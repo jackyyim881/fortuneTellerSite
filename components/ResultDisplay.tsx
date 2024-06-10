@@ -168,6 +168,9 @@ export default function ResultDisplay({
   const handleBack = () => {
     router.push("/");
   };
+  const handleMatch = () => {
+    router.push("/match");
+  };
 
   if (!date1 || !date2) {
     return <p className="text-red-500">請提供完整的信息來計算兼容性。</p>;

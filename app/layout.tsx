@@ -25,7 +25,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${inter.className}`}>
-          <header className="p-4 border bg-white  dark:bg-gray-800">
+          <header className="p-4 border bg-blue  dark:bg-gray-800">
             <SignedOut>
               <SignInButton />
             </SignedOut>
@@ -33,7 +33,9 @@ export default function RootLayout({
               <UserButton />
             </SignedIn>
           </header>
-          <main className="min-h-screen ">{children}</main>
+          <main className="min-h-screen bg-gradient-to-r from-blue-400 to-indigo-500">
+            {children}
+          </main>
         </body>
       </html>
     </ClerkProvider>

@@ -1,5 +1,7 @@
 "use client";
 
+import Pairing from "./Pairing";
+
 type Person = {
   name: string;
   gender: "boy" | "girl";
@@ -35,6 +37,7 @@ export default function MatchList({ matches }: MatchListProps) {
           重新配對
         </button>
       </div>
+      <Pairing />
     </>
   );
 }

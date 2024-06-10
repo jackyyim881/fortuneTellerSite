@@ -1,10 +1,9 @@
 # Use the official Node.js image as the base image
-FROM node:20-alpine
+FROM node:20-alpine as base
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm ci --quiet
-
 
 COPY ./prisma prisma
 RUN npx prisma generate
@@ -12,11 +11,15 @@ RUN npx prisma generate
 # Copy the rest of the application code
 COPY . .
 
-# Build the Next.js application
-RUN npm run build
-
-# Expose the port the app runs on
+# Development stage
+FROM base as dev
 EXPOSE 3000
+CMD ["npm", "run", "dev"]
 
-# Define the command to run the application
+# Production stage
+FROM base as prod
+COPY --from=base /app/node_modules ./node_modules
+ENV NODE_ENV=production
+RUN npm run build
+EXPOSE 3000
 CMD ["npm", "start"]

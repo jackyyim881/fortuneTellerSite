@@ -25,6 +25,7 @@ export default function CompatibilityForm() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // 保存数据到本地存储
+
     localStorage.setItem("date1", date1);
     localStorage.setItem("time1", time1);
     localStorage.setItem("date2", date2);

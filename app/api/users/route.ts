@@ -30,3 +30,24 @@ export async function GET(request: Request, res: Response) {
 
   return NextResponse.json(user);
 }
+
+export async function POST(request: Request, res: Response) {
+  const { userId } = auth();
+
+  if (!userId) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
+
+  const { email, firstName, lastName } = await request.json();
+  console.log(email, firstName, lastName);
+  const user = await prisma.user.create({
+    data: {
+      clerkUserId: userId,
+      email,
+      name: `${firstName} ${lastName}`,
+      starSignId: 1,
+    },
+  });
+
+  return NextResponse.json(user);
+}

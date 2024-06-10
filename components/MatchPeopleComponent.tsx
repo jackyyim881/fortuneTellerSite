@@ -2,12 +2,18 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import { EmailAddress } from "@clerk/nextjs/server";
+import { toast } from "react-toastify";
 
 export default function MatchButton() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter(); // Use the useRouter hook for navigation
   const handleClick = async (e: any) => {
     e.preventDefault();
+    router.push("/match");
+
     setIsLoading(true);
   };
 
@@ -27,18 +33,7 @@ export default function MatchButton() {
           </motion.div>
         </AnimatePresence>
       ) : (
-        <Link
-          href="/match"
-          className="
-            text-md font-bold 
-            bg-blue-600 text-white 
-        
-            rounded-lg hover:bg-blue-700 
-            transition duration-300>
-      "
-        >
-          開始配對
-        </Link>
+        "開始配對" // Changed to a simple text since navigation is now handled programmatically
       )}
     </button>
   );

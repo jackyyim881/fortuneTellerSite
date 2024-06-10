@@ -1,20 +1,43 @@
-"use client";
 import MatchList from "@/components/MatchList";
-import MatchButton from "@/components/MatchPeopleComponent";
 import { useUser } from "@clerk/nextjs";
-export default function MatchPage({ match }: any) {
-  const { user } = useUser();
+import { ToastContainer, toast } from "react-toastify";
+import { currentUser } from "@clerk/nextjs/server";
+import FormList from "@/components/form-list";
+import { getStarSigns } from "../action";
+import { useToastMessage } from "@/app/hooks/useToastMessage";
+import ClientToastHandler from "@/components/ClientToastHandler";
+
+export default async function MatchPage() {
+  const user = await currentUser();
+  const username = user?.fullName as string;
+  const email = user?.emailAddresses[0].emailAddress as string;
+  const starSigns = await getStarSigns();
   return (
-    <div className="flex  relative  justify-center min-h-screen items-center">
-      <div className="border p-4 ">
-        <h1 className="text-4xl  font-bold ">配對</h1>
-        {user ? (
-          <MatchList matches={[]} />
-        ) : (
-          <p className="text-red-500">請先登錄以查看配對</p>
-        )}
-        <MatchButton />
+    <section className="p-4">
+      <div className="">
+        <h1 className="title ">配對</h1>
+        <div className="">
+          {user ? (
+            <>
+              <div className="mt-5">
+                <MatchList matches={[]} />
+                <p className="mt-5 text-red-500   font-bold">已成功注册</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="mt-5 text-red-500">請先登錄以查看配對</p>
+              <FormList
+                username={username}
+                email={email}
+                starSigns={starSigns}
+              />
+            </>
+          )}
+        </div>
       </div>
-    </div>
+
+      <ClientToastHandler />
+    </section>
   );
 }
