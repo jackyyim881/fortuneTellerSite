@@ -37,7 +37,7 @@ export default async function MatchPage() {
         </div>
       </div>
 
-      <ClientToastHandler />
+      {/* <ClientToastHandler /> */}
     </section>
   );
 }
