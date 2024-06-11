@@ -13,6 +13,7 @@
     "noImplicitAny": false,
     "jsx": "preserve",
     "incremental": true,
+
     "plugins": [
       {
         "name": "next"
@@ -20,7 +21,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/lib/*": ["./lib/*"]
+      "@/lib/*": ["./lib/*"],
+      "@/types/*": ["./app/types/*"]
     }
   },
   "include": [
@@ -31,5 +33,5 @@
     "server.ts",
     "server.js"
   ],
-  "exclude": ["node_modules", "app/api/astrology/*.ts"]
+  "exclude": ["node_modules"]
 }

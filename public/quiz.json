@@ -1,0 +1,20 @@
+{
+  "title": "心理测试",
+  "questions": [
+    {
+      "question": "你喜欢社交活动吗？",
+      "options": ["是", "否", "有时"],
+      "type": "multiple-choice"
+    },
+    {
+      "question": "请评价你目前的压力水平。",
+      "options": ["低", "中", "高"],
+      "type": "multiple-choice"
+    },
+    {
+      "question": "你放松的首选方式是什么？",
+      "options": ["阅读", "看电视", "运动"],
+      "type": "multiple-choice"
+    }
+  ]
+}
