@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import tarotData from "@/public/tarot-images.json";
-import { TarotData, TarotCard } from "@/app/types/type_lib";
+import { TarotData, TarotCard } from "@/types/types";
 
 export async function GET() {
   const data: TarotData = tarotData;

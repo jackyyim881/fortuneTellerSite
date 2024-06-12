@@ -21,17 +21,16 @@ const fengshuiRules = (name: string): string => {
     .join("");
   return newName;
 };
-declare const parseTsv: <T>(tsvFilepath: string) => T[];
-type stokeCount = {
-  zi: string;
-  stroke: number;
-};
-const stokeCounts: stokeCount[] = parseTsv<stokeCount>("data/zi-dataset.tsv");
+// declare const parseTsv: <T>(tsvFilepath: string) => T[];
+// type stokeCount = {
+//   zi: string;
+//   stroke: number;
+// };
+// const stokeCounts: stokeCount[] = parseTsv<stokeCount>("data/zi-dataset.tsv");
 
 export async function GET(request: NextRequest) {
   const name = request.nextUrl.searchParams.get("name");
   console.log(name);
-  console.log(stokeCounts);
   if (!name || typeof name !== "string") {
     return NextResponse.json({ error: "Invalid name" }, { status: 400 });
   }

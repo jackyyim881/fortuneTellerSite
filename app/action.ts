@@ -42,30 +42,6 @@ export async function getStarSigns() {
   return starSigns;
 }
 
-export async function getMatch() {
-  const user = await currentUser();
-  if (!user) {
-    throw new Error("You must be signed in to use this feature");
-  }
-
-  const userRecord = await prisma.user.findUnique({
-    where: {
-      clerkUserId: user.id,
-    },
-  });
-
-  if (!userRecord) {
-    throw new Error("User not found");
-  }
-
-  const match = await prisma.match.findFirst({
-    where: {
-      userId: userRecord.id,
-    },
-  });
-
-  return match;
-}
 enum Gender {
   Male = "男",
   Female = "女",
@@ -88,3 +64,28 @@ export async function submitData(formData: FormData) {
   );
   console.log(astrolabe);
 }
+
+// export async function getMatch() {
+//   const user = await currentUser();
+//   if (!user) {
+//     throw new Error("You must be signed in to use this feature");
+//   }
+
+//   const userRecord = await prisma.user.findUnique({
+//     where: {
+//       clerkUserId: user.id,
+//     },
+//   });
+
+//   if (!userRecord) {
+//     throw new Error("User not found");
+//   }
+
+//   const match = await prisma.match.findFirst({
+//     where: {
+//       userId: userRecord.id,
+//     },
+//   });
+
+//   return match;
+// }
