@@ -17,15 +17,20 @@ export default function Page() {
   ];
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl">生肖</h1>
+    <div className="p-4 font-bold">
+      <h1 className="text-4xl">生肖</h1>
       <p className="mt-7">
         生肖是一种根据出生年份来划分的区域，每个区域都有一个对应的生肖名字。
       </p>
       <ul className="flex mt-7 space-x-4 ml-4">
         {animals.map((animal) => (
           <Link href={`/zodiac/${animal.id}`} key={animal.name}>
-            <li key={animal.id}>{animal.name}</li>
+            <li
+              key={animal.id}
+              className="bg-white p-4 rounded-md shadow-md hover:bg-gray-100"
+            >
+              {animal.name}
+            </li>
           </Link>
         ))}
       </ul>

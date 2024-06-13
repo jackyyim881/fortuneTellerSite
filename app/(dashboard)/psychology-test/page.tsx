@@ -1,4 +1,6 @@
 "use client";
+import CompleteForm from "@/components/complete-form";
+import PDFDownloadQuizAnswer from "@/components/pdf-download-quiz-answer";
 import ScoreResult from "@/components/score-result";
 import { useState, useEffect } from "react";
 
@@ -29,17 +31,21 @@ export default function Page() {
 
   if (isCompleted) {
     return (
-      <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">你的结果</h1>
-        <p>感谢你完成测试！</p>
-        <ul>
+      <div className="flex justify-center ">
+        <div className="p-4 w-[500px] font-bold rounded-md bg-white">
+          <h1 className="text-4xl  mb-4 text-center">你的结果</h1>
+          <p className=" text-2xl text-center">感谢你完成测试！</p>
           {answers.map((answer, index) => (
-            <li key={index}>
-              问题 {index + 1}: {answer}
-            </li>
+            <p key={index} className="mt-2">
+              {index + 1}. {answer}
+            </p>
           ))}
-        </ul>
-        <ScoreResult score={answers.length} />
+          <PDFDownloadQuizAnswer answers={answers} />
+          <ScoreResult score={answers.length} />
+          <div className="mt-5">
+            <CompleteForm />
+          </div>
+        </div>
       </div>
     );
   }
@@ -47,23 +53,25 @@ export default function Page() {
   const currentQuestion = quizData.questions[currentQuestionIndex];
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">{quizData.title}</h1>
+    <div className="mx-auto container ">
+      <h1 className="text-4xl text-white font-bold mb-4">{quizData.title}</h1>
       <div>
-        <p>{currentQuestion.question}</p>
-        <div className="mt-4">
+        <p className="text-2xl">{currentQuestion.question}</p>
+        <div className="flex space-x-4 mt-4">
           {currentQuestion.options.map((option, index) => (
-            <button
-              key={index}
-              className="block bg-blue-500 text-white py-2 px-4 rounded mt-2"
-              onClick={() => handleAnswer(option)}
-            >
-              {option}
-            </button>
+            <div className="w-[500px]" key={index}>
+              <button
+                key={index}
+                className="w-full h-[250px] mx-auto text-2xl font-bold container bg-white text-black py-2 px-4 rounded mt-2 hover:bg-gray-100"
+                onClick={() => handleAnswer(option)}
+              >
+                {option}
+              </button>
+            </div>
           ))}
         </div>
         <div></div>
-        <div className="result">
+        <div className="mt-4">
           <p>
             当前进度: {currentQuestionIndex + 1} / {quizData.questions.length}
           </p>

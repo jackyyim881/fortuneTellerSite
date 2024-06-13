@@ -1,11 +1,16 @@
 "use client";
-import Categories from "./dream-categories-items";
+import Categories from "../../../components/dream-categories-items";
 import SearchBar from "@/components/search-button";
 import SearchResult from "@/components/search-result";
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const search = useSearchParams().get("search");
+  // const search = useSearchParams().get("search");
+  const searchParams = useSearchParams();
+  function handleSearch() {
+    const search = searchParams.get("search");
+    return search;
+  }
   const data = [
     { name: "人物", img: "/images/person.png" },
     { name: "生活", img: "/images/life.png" },
@@ -30,7 +35,7 @@ export default function Page() {
       </div>
       <div className="w-full flex">
         <div className="mt-8 w-1/2">
-          <SearchResult search={search} />
+          <SearchResult search={handleSearch} />
         </div>
         <div className="mt-8 w-1/2">
           <SearchBar />

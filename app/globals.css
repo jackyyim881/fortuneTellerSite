@@ -9,3 +9,16 @@ header {
 .title {
   @apply text-2xl  font-bold;
 }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.yin-yang {
+  animation: rotate 2s linear infinite;
+  transform-origin: center;
+}

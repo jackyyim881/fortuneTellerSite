@@ -1,20 +1,62 @@
 {
   "title": "心理测试",
+  "description": "这是一个高标准的心理测试，旨在了解你的心理状态和行为模式。请认真回答以下问题，以便我们提供准确的分析。",
   "questions": [
     {
       "question": "你喜欢社交活动吗？",
       "options": ["是", "否", "有时"],
-      "type": "multiple-choice"
+      "type": "multiple-choice",
+      "category": "社交倾向",
+      "instructions": "请根据你通常的社交行为选择一个选项。"
     },
     {
       "question": "请评价你目前的压力水平。",
       "options": ["低", "中", "高"],
-      "type": "multiple-choice"
+      "type": "multiple-choice",
+      "category": "压力管理",
+      "instructions": "请根据你最近一周的情况进行评价。"
     },
     {
       "question": "你放松的首选方式是什么？",
       "options": ["阅读", "看电视", "运动"],
-      "type": "multiple-choice"
+      "type": "multiple-choice",
+      "category": "放松技巧",
+      "instructions": "请选择一个你最常使用的放松方式。"
+    },
+    {
+      "question": "你通常在面对紧急情况时会如何反应？",
+      "options": ["保持冷静", "感到紧张", "立即寻求帮助"],
+      "type": "multiple-choice",
+      "category": "应对策略",
+      "instructions": "请回忆你最近一次遇到紧急情况时的反应。"
+    },
+    {
+      "question": "你认为自己是一个有计划的人吗？",
+      "options": ["是", "否", "有时"],
+      "type": "multiple-choice",
+      "category": "计划能力",
+      "instructions": "请根据你平时的行为习惯进行回答。"
+    },
+    {
+      "question": "当你感到沮丧时，你通常会做什么？",
+      "options": ["倾诉朋友", "自己消化", "转移注意力"],
+      "type": "multiple-choice",
+      "category": "情绪调节",
+      "instructions": "请选择一个你最常用的方法。"
+    },
+    {
+      "question": "你在团队中通常扮演什么角色？",
+      "options": ["领导者", "协作者", "观察者"],
+      "type": "multiple-choice",
+      "category": "团队角色",
+      "instructions": "请回忆你在最近一个团队活动中的角色。"
+    },
+    {
+      "question": "你对未来的计划有多明确？",
+      "options": ["非常明确", "比较模糊", "没有计划"],
+      "type": "multiple-choice",
+      "category": "未来规划",
+      "instructions": "请根据你目前对未来的规划情况进行回答。"
     }
   ]
 }

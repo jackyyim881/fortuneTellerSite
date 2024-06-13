@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import { FetchSpecialTitleData } from "@/lib/scraper";
-import ArticlesComponent from "@/components/articles-component";
 export default async function Page() {
   const article = 80;
   const data = await FetchSpecialTitleData(article);
