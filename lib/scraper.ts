@@ -1,4 +1,5 @@
 import { CheerioAPI, load } from "cheerio";
+
 export type specialArticleData = {
   name: string;
   description: string;

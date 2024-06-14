@@ -18,9 +18,12 @@
     "schema": "prisma/schema.prisma"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.28",
+    "@ai-sdk/react": "^0.0.1",
     "@clerk/nextjs": "^5.1.4",
     "@prisma/client": "^5.15.0",
     "@types/socket.io-client": "^3.0.0",
+    "ai": "^3.1.35",
     "autoprefixer": "^10.4.19",
     "bcrypt": "^5.1.1",
     "cheerio": "^1.0.0-rc.12",
@@ -31,14 +34,16 @@
     "jspdf-autotable": "^3.8.2",
     "next": "14.2.3",
     "next-themes": "^0.3.0",
-    "openai": "^4.47.3",
+    "openai": "^4.51.0",
+    "puppeteer": "^22.11.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "react-toastify": "^10.0.5",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
-    "svix": "^1.24.0"
+    "svix": "^1.24.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

@@ -73,21 +73,21 @@ export default function Pairing() {
             bg-blue-600 mt-5 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300
         "
       >
-        Find Pair
+        尋找配對
       </button>
-      <div className="flex justify-center items-center">
+      <div className="flex space-x-4 justify-center items-center">
         <div className="">
           {state.pair === null && (
-            <p className="text-center text-gray-100 text-lg ">
-              Waiting for a pair...
+            <p className=" text-gray-100 text-4xl font-bold ">
+              正在尋找配對...
             </p>
           )}
-          {user.isLoaded && (
+          {/* {user.isLoaded && (
             <p className="text-center text-gray-10 text-lg">
               User ID: {state.user.userId}, Star Sign ID:{" "}
               {state.user.starSignId}
             </p>
-          )}
+          )} */}
         </div>
         <div className="flex flex-col items-center mt-4">
           <div className="w-24 h-24 rounded-full overflow-hidden">

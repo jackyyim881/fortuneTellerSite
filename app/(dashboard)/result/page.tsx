@@ -36,7 +36,6 @@ export default function Page() {
           date2={data.date2}
           time2={data.time2}
         />
-        {/* <SearchBar data={data} /> */}
       </div>
     </div>
   );

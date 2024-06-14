@@ -11,13 +11,15 @@ export default async function MatchPage() {
   return (
     <section className="p-4">
       <div className="">
-        <h1 className="title ">配對</h1>
+        <h1 className="title">配對</h1>
         <div className="">
           {user ? (
             <>
               <div className="mt-5">
                 <MatchList matches={[]} />
-                <p className="mt-5 text-red-500   font-bold">已成功注册</p>
+                <div className=" relative mt-5 text-2xl text-red-700   font-bold">
+                  <p className="p-4">已成功注册</p>
+                </div>
               </div>
             </>
           ) : (
