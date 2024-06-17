@@ -19,3 +19,21 @@ export interface TarotData {
   description: string;
   cards: TarotCard[];
 }
+
+export type Zodiac = {
+  name: string;
+  date: string;
+  img: string;
+  details: {
+    keyword: string;
+    planet: string;
+    color: string;
+    gemstone: string;
+    element: string;
+    traits: string;
+    compatibility: string;
+    luckyNumber: string;
+  };
+};
+
+export type Zodiacs = Zodiac[];

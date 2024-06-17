@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import MatchButton from "./match-button";
 import { calculateCompatibility } from "./compatibility/compatibility-calculator";
+import { saveCompatibilityCalculation } from "@/utils/saveCompatibilityCalculation";
+import { useUser } from "@clerk/nextjs";
 
 type SearchDataProps = {
   date1: string;
@@ -16,6 +18,7 @@ export default function ResultDisplay({
   date2,
   time2,
 }: SearchDataProps) {
+  const clerkUser = useUser();
   const router = useRouter();
   const [result, setResult] = useState<{
     score: number;
@@ -28,6 +31,8 @@ export default function ResultDisplay({
     if (date1 && date2) {
       const result = calculateCompatibility({ date1, time1, date2, time2 });
       setResult(result);
+
+      console.log("Saved compatibility calculation", result);
     }
   }, [date1, date2, time1, time2]);
 

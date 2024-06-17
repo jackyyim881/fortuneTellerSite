@@ -19,12 +19,35 @@ model User {
   email     String   @unique
   starSign  StarSign @relation(fields: [starSignId], references: [id])
   starSignId Int
+  compatibilityCalculationsA    CompatibilityCalculation[] @relation("UserACompatibilityCalculations")
+  compatibilityCalculationsB    CompatibilityCalculation[] @relation("UserBCompatibilityCalculations")
 
   matches   User[]   @relation(name: "UserMatches")
   matchedBy User[]   @relation(name: "UserMatches")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
 
+
+model CompatibilityCalculation {
+  id                       Int      @id @default(autoincrement())
+  userAId                  Int
+  userBId                  Int
+  userA                    User     @relation("UserACompatibilityCalculations", fields: [userAId], references: [id])
+  userB                    User     @relation("UserBCompatibilityCalculations", fields: [userBId], references: [id])
+  birthDateA               DateTime
+  birthTimeA               DateTime
+  birthDateB               DateTime
+  birthTimeB               DateTime
+  score                    Float
+  analysis1                String
+  analysis2                String
+  compatibilityAnalysis    String
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+
+  @@index([userAId], name: "idx_userAId")
+  @@index([userBId], name: "idx_userBId")
 }
 
 model StarSign {

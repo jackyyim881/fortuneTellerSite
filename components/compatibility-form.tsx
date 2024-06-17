@@ -2,6 +2,8 @@
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { LocalStorage } from "./local-storage-data";
+import { saveCompatibilityCalculation } from "@/utils/saveCompatibilityCalculation";
+import { useUser } from "@clerk/nextjs";
 type SearchdataProps = {
   date1: string;
   time1: string;
@@ -9,7 +11,13 @@ type SearchdataProps = {
   time2: string;
 };
 
-export default function CompatibilityForm() {
+type CompatibilityProps = {
+  compatibility: any;
+  href?: string;
+  title?: string;
+};
+
+export default function CompatibilityForm({ href, title }: CompatibilityProps) {
   const router = useRouter();
   const [inputs, setInputs] = useState<SearchdataProps>({
     date1: "",
@@ -31,7 +39,7 @@ export default function CompatibilityForm() {
     }
   }, []);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     const dataToStore = {
       date1: inputs.date1,
       time1: inputs.time1,
@@ -40,6 +48,7 @@ export default function CompatibilityForm() {
     };
     e.preventDefault();
     LocalStorage(dataToStore);
+    // const submit = await saveCompatibilityCalculation(date1);
     router.push(
       `/result?date1=${inputs.date1}&time1=${inputs.time1}&date2=${inputs.date2}&time2=${inputs.time2}`
     );
@@ -47,7 +56,7 @@ export default function CompatibilityForm() {
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
-      <h2 className="text-2xl text-center font-bold mb-6">愛情兼容性計算器</h2>
+      <h2 className="text-2xl text-center font-bold mb-6">{title}</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
           <label className="label__text">甲方 - 出生日期</label>
