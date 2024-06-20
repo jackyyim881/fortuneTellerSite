@@ -1,13 +1,13 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-export default function Header() {
+export default function ClerkHeader() {
   return (
-    <header className="p-4 flex border bg-blue  dark:bg-gray-800">
+    <div className=" flex  justify-center text-xs  items-center">
       <SignedOut>
         <SignInButton />
       </SignedOut>
       <SignedIn>
         <UserButton />
       </SignedIn>
-    </header>
+    </div>
   );
 }

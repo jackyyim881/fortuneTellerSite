@@ -1,4 +1,4 @@
-import TarotRandomCard from "@/components/tarot-random-card-btn";
+import TarotRandomCard from "./_components/tarot-random-card-btn";
 
 export default async function Page() {
   return (

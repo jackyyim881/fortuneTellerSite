@@ -1,4 +1,3 @@
-import FortuneForm from "@/components/fortune-form";
 import { ReactNode } from "react";
 
 export const metadata = {
@@ -8,7 +7,7 @@ export const metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen container mx-auto">
-      <main className=" p-4">{children}</main>
+      <main className="p-4">{children}</main>
     </div>
   );
 }

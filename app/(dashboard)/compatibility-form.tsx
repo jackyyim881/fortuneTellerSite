@@ -1,9 +1,8 @@
 "use client";
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { LocalStorage } from "./local-storage-data";
-import { saveCompatibilityCalculation } from "@/utils/saveCompatibilityCalculation";
-import { useUser } from "@clerk/nextjs";
+import { LocalStorage } from "../../components/local-storage-data";
+
 type SearchdataProps = {
   date1: string;
   time1: string;
@@ -40,6 +39,8 @@ export default function CompatibilityForm({ href, title }: CompatibilityProps) {
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
     const dataToStore = {
       date1: inputs.date1,
       time1: inputs.time1,
@@ -48,7 +49,6 @@ export default function CompatibilityForm({ href, title }: CompatibilityProps) {
     };
     e.preventDefault();
     LocalStorage(dataToStore);
-    // const submit = await saveCompatibilityCalculation(date1);
     router.push(
       `/result?date1=${inputs.date1}&time1=${inputs.time1}&date2=${inputs.date2}&time2=${inputs.time2}`
     );

@@ -1,9 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-// components/SearchBar.tsx
 import { useState } from "react";
 
-export default function SearchBar() {
+export default function DreamSearchBar() {
   const [keyword, setKeyword] = useState("");
 
   const router = useRouter();

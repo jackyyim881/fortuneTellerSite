@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { FetchSpecialTitleData } from "@/lib/scraper";
 export default async function Page() {
   const article = 80;

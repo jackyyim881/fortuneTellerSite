@@ -9,7 +9,6 @@ export async function createNewUser(data: FormData) {
     throw new Error("You must be signed in to use this feature");
   }
 
-  const username = data.get("name") as string;
   const email = data.get("email") as string;
   const starSignId = parseInt(data.get("starSignId") as string);
   const existingUser = await prisma.user.findUnique({
@@ -64,28 +63,3 @@ export async function submitData(formData: FormData) {
   );
   console.log(astrolabe);
 }
-
-// export async function getMatch() {
-//   const user = await currentUser();
-//   if (!user) {
-//     throw new Error("You must be signed in to use this feature");
-//   }
-
-//   const userRecord = await prisma.user.findUnique({
-//     where: {
-//       clerkUserId: user.id,
-//     },
-//   });
-
-//   if (!userRecord) {
-//     throw new Error("User not found");
-//   }
-
-//   const match = await prisma.match.findFirst({
-//     where: {
-//       userId: userRecord.id,
-//     },
-//   });
-
-//   return match;
-// }

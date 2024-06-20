@@ -1,7 +1,7 @@
 "use client";
-import CompleteForm from "@/components/complete-form";
-import PDFDownloadQuizAnswer from "@/components/pdf-download-quiz-answer";
-import ScoreResult from "@/components/score-result";
+import CompleteForm from "./_components/complete-form";
+import PDFDownloadQuizAnswer from "./_components/pdf-download-quiz-answer";
+import ScoreResult from "./_components/score-result";
 import { useState, useEffect } from "react";
 
 export default function Page() {
@@ -54,9 +54,9 @@ export default function Page() {
 
   return (
     <div className="mx-auto container ">
-      <h1 className="text-4xl text-white font-bold mb-4">{quizData.title}</h1>
+      <h1 className="text-2xl">{quizData.title}</h1>
       <div>
-        <p className="text-2xl">{currentQuestion.question}</p>
+        <p className="text__title">{currentQuestion.question}</p>
         <div className="flex space-x-4 mt-4">
           {currentQuestion.options.map((option, index) => (
             <div className="w-[500px]" key={index}>

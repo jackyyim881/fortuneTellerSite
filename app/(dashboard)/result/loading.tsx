@@ -1,6 +1,5 @@
-import Spinner from "@/components/spinner-load";
+import Spinner from "../trend/_components/spinner-load";
 
 export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
   return <Spinner />;
 }

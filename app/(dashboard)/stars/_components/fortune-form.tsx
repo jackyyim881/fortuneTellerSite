@@ -18,22 +18,21 @@ export default function FortuneForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, gender, year, month, day, hour }),
     });
-
     const data = await response.json();
-    // Handle the response data (e.g., display the results)
 
-    console.log(data);
-
-    router.push(
-      `/test-results?name=${name}&gender=${gender}&year=${year}&month=${month}&day=${day}&hour=${hour}`
+    return (
+      data &&
+      router.push(
+        `/test-results?name=${name}&gender=${gender}&year=${year}&month=${month}&day=${day}&hour=${hour}`
+      )
     );
   };
 
   return (
-    <div className="bg-white p-4 rounded shadow-md">
+    <div className="bg-white p-4  font-bold max-w-lg container mx-auto mt-2 rounded shadow-md">
       <h2 className="text-2xl font-bold mb-4 text-center">在線算命</h2>
       <form onSubmit={handleFormSubmit} className="space-y-4">
-        <div>
+        <div className="">
           <label className="block mb-2">姓名</label>
           <input
             type="text"
@@ -64,11 +63,11 @@ export default function FortuneForm() {
         </div>
         <div>
           <label className="block mb-2">生日</label>
-          <div className="flex space-x-2">
+          <div className="flex  space-x-2">
             <select
               value={year}
               onChange={(e) => setYear(parseInt(e.target.value))}
-              className="p-2 border rounded"
+              className="p-2 w-[150px] border rounded"
             >
               {Array.from({ length: 2024 - 1900 + 1 }, (_, i) => 1900 + i).map(
                 (year) => (
@@ -81,7 +80,7 @@ export default function FortuneForm() {
             <select
               value={month}
               onChange={(e) => setMonth(parseInt(e.target.value))}
-              className="p-2 border rounded"
+              className="p-2  w-[150px]  border rounded"
             >
               {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
                 <option key={month} value={month}>
@@ -92,7 +91,7 @@ export default function FortuneForm() {
             <select
               value={day}
               onChange={(e) => setDay(parseInt(e.target.value))}
-              className="p-2 border rounded"
+              className="p-2 w-[150px]  border rounded"
             >
               {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
                 <option key={day} value={day}>
@@ -103,7 +102,7 @@ export default function FortuneForm() {
             <select
               value={hour}
               onChange={(e) => setHour(parseInt(e.target.value))}
-              className="p-2 border rounded"
+              className="p-2  2 w-[150px] border rounded"
             >
               {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
                 <option key={hour} value={hour}>

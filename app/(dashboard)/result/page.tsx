@@ -1,5 +1,5 @@
 "use client";
-import ResultDisplay from "@/components/compatibility-result-display";
+import ResultDisplay from "./_components/compatibility-result-display";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 export default function Page() {
@@ -27,16 +27,14 @@ export default function Page() {
     }
   }, [date1, time1, date2, time2]);
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center">
-      <div className="w-full max-w-2xl text-center">
-        <h1 className="text-4xl mt-10 font-bold text-white mb-8">分析結果</h1>
-        <ResultDisplay
-          date1={data.date1}
-          time1={data.time1}
-          date2={data.date2}
-          time2={data.time2}
-        />
-      </div>
+    <div className="w-full max-w-2xl text-center">
+      <h1 className="text-4xl mt-10 font-bold text-white mb-8">分析結果</h1>
+      <ResultDisplay
+        date1={data.date1}
+        time1={data.time1}
+        date2={data.date2}
+        time2={data.time2}
+      />
     </div>
   );
 }

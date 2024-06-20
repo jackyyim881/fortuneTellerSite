@@ -1,6 +1,5 @@
 "use client";
 import { createNewUser } from "@/app/action";
-import prisma from "@/lib/prisma";
 import { useState } from "react";
 type StarSign = {
   id: number;

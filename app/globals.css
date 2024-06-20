@@ -6,6 +6,10 @@ header {
   @apply bg-blue-500 text-white;
 }
 
+.text__title {
+  @apply text-base font-semibold leading-6 text-gray-900;
+}
+
 .title {
   @apply text-2xl  font-bold;
 }
