@@ -14,11 +14,11 @@ export default function ZodiacsList({ zodiacs }: { zodiacs: Zodiacs }) {
   return (
     <div className="">
       <div className="border-b  border-gray-200 pb-1 sm:pb-0">
-        <nav className="-mb-px flex space-x-8">
+        <nav className="-mb-px flex space-x-4">
           {zodiacs.map((zodiac, index) => (
             <li
               key={index}
-              className="flex-1 font-bold text-center list-none  cursor-pointer p-2"
+              className="flex-1 font-bold text-center list-none  cursor-pointer"
               onClick={() => handleSelectedZodiac(zodiac)}
             >
               <div className="text-xs">{zodiac.date}</div>
@@ -42,7 +42,7 @@ export default function ZodiacsList({ zodiacs }: { zodiacs: Zodiacs }) {
           ))}
         </nav>
       </div>
-      <div className="mt-2">
+      <div className="mt-4">
         {selectedZodiac && <ZodiacDetails selectedZodiac={selectedZodiac} />}
       </div>
     </div>

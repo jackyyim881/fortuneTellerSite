@@ -1,16 +1,12 @@
-"use client";
-import { useState } from "react";
-import { createStarId } from "./action";
-import { useParams } from "next/navigation";
-
-export default function Page() {
-  const params = useParams<{ id: string }>();
+export default async function Page({ params }: { params: { id: string } }) {
   const decodedId = decodeURIComponent(params.id);
+  // const getzodiacSigns = await getzodiacSigns(dec);
+
   return (
     <>
-      <ul className="flex mt-7 space-x-4 ml-4">
-        <li className=" text-4xl font-bold">{decodedId}</li>{" "}
-      </ul>
+      <div className="ml-4">
+        <p className=" text-4xl font-bold">{decodedId}</p>
+      </div>
     </>
   );
 }

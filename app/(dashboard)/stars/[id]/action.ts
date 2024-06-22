@@ -7,3 +7,7 @@ export const createStarId = (id: string) => {
     },
   });
 };
+
+export const getzodiacSigns = (SignsId: string) => {
+  return prisma.starSign.findMany();
+};

@@ -38,7 +38,7 @@ export default function ZodiacDetails({ selectedZodiac }: ZodiacDetailsProps) {
           </div>
         </div>
       </div>
-      <div className="w-full grid grid-cols-2 text-xl has-[400px] p-8">
+      <div className="w-full grid grid-cols-2 text-sm leading-6 has-[400px] p-8">
         <div className="*:p-2 ">
           <p className="">
             <strong>關鍵詞:</strong> {selectedZodiac?.details?.keyword}
@@ -67,7 +67,7 @@ export default function ZodiacDetails({ selectedZodiac }: ZodiacDetailsProps) {
             <strong>幸運數字:</strong> {selectedZodiac?.details?.luckyNumber}
           </p>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 }

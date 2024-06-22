@@ -24,11 +24,9 @@ const navigationLinks = [
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <section className="min-h-screen">
+    <main className="min-h-screen bg-gradient-to-r from-blue-400 to-indigo-500">
       <NavbarSample navigation={navigationLinks} />
-      <main className="min-h-screen bg-gradient-to-r from-blue-400 to-indigo-500">
-        <div className="mx-auto max-w-[1200px] container">{children}</div>
-      </main>
-    </section>
+      <div className="mx-auto max-w-[1200px] container">{children}</div>
+    </main>
   );
 }

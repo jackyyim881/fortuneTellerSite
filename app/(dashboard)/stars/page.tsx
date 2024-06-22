@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 
 async function getZodaics() {
-  const filePath = path.join(process.cwd(), "public", "zodiacs.json");
+  const filePath = path.join(process.cwd(), "public", "stars.json");
   const jsonData = fs.readFileSync(filePath, "utf-8");
   const res = JSON.parse(jsonData);
   return res;
@@ -15,8 +15,14 @@ export default async function Page() {
   const data = await getZodaics();
   return (
     <>
-      <ZodiacsList zodiacs={data} />
-      <FortuneForm />
+      <div className="">
+        <div className="">
+          <ZodiacsList zodiacs={data} />
+        </div>
+        <div className="">
+          <FortuneForm />
+        </div>
+      </div>
     </>
   );
 }

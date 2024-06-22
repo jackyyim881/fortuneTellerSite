@@ -5,9 +5,5 @@ export const metadata = {
   icons: "",
 };
 export default function Layout({ children }: { children: ReactNode }) {
-  return (
-    <div className="min-h-screen container mx-auto">
-      <main className="p-4">{children}</main>
-    </div>
-  );
+  return <main className="p-4">{children}</main>;
 }

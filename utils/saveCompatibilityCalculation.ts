@@ -27,8 +27,6 @@ export const saveCompatibilityCalculation = async ({
 }: CompatibilityCalculationScope) => {
   const newCalculation = await prisma.compatibilityCalculation.create({
     data: {
-      userAId,
-      userBId,
       birthDateA: new Date(birthDateA),
       birthTimeA: new Date(`1970-01-01T${birthTimeA}:00Z`),
       birthDateB: new Date(birthDateB),
