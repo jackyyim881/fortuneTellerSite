@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { promises as fs } from "fs";
 export async function GET(request: Request) {
   const file = await fs.readFile(

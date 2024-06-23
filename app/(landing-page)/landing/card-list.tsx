@@ -1,22 +1,18 @@
-import Button from "./button";
-
 export default function CardList() {
   const customers = ["John", "Jane", "Mike", "Sarah"];
   return (
-    <div className="grid mt-10 grid-cols-3 gap-4 bg-slate-800	text-white  ">
-      <div className="border-b-[0.5px]  border-t-[0.5px] p-4">
+    <div className="grid mt-10 grid-cols-3 gap-4 	text-white  ">
+      <div className=" p-4">
         <h1 className="text-2xl text-center mb-5">Service Plan</h1>
         <span className="text-md  text-wrap">
           provides a list of service plans for customers to choose from
         </span>
-        <div className="mt-5 items-center">
-          <Button />
-        </div>
+        <div className="mt-5 items-center">{/* <Button /> */}</div>
       </div>
       <div className="flex items-center justify-center">
         <svg
-          width="100"
-          height="100"
+          width="300"
+          height="300"
           viewBox="0 0 100 100"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -31,14 +27,12 @@ export default function CardList() {
           </g>
         </svg>
       </div>
-      <div className="border-b-[0.5px] border-t-[0.5px] p-4">
+      <div className="p-4">
         <h1 className="text-2xl text-center mb-5">Service Plan</h1>
         <span className="text-md text-wrap">
           provides a list of service plans for customers to choose from
         </span>
-        <div className="mt-5 items-center">
-          <Button />
-        </div>
+        <div className="mt-5 items-center">{/* <Button /> */}</div>
       </div>
     </div>
   );
