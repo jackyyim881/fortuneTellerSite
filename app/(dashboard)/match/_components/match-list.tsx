@@ -1,6 +1,6 @@
 "use client";
-
-import Pairing from "./pairing-items";
+import { StarSign } from "@prisma/client";
+import PairComponent from "./pairing-items";
 
 type Person = {
   name: string;
@@ -13,31 +13,51 @@ type Match = {
 };
 
 type MatchListProps = {
-  matches: Match[];
+  starSign: StarSign[];
 };
 
-export default function MatchList({ matches }: MatchListProps) {
+export default function MatchList({ starSign }: MatchListProps) {
   const handleReset = () => {
     window.location.reload();
   };
+  function ListMatches({ matches }: any) {
+    return (
+      <div>
+        {matches.map((match: any, index: any) => (
+          <li key={index} className="">
+            {match.boy.name} and {match.girl.name} are a match!
+          </li>
+        ))}
+      </div>
+    );
+  }
+
+  function ButtonReset({ handleReset }: any) {
+    return (
+      <button className="button--match--primary" onClick={handleReset}>
+        重新配對
+      </button>
+    );
+  }
+
+  function ButtonPair({ findPair }: any) {
+    return (
+      <button onClick={findPair} className="button--match--primary">
+        尋找配對
+      </button>
+    );
+  }
+
   return (
     <>
       <div className="">
-        <ul className="">
-          {matches.map((match, index) => (
-            <li key={index} className="">
-              {match.boy.name} and {match.girl.name} are a match!
-            </li>
-          ))}
-        </ul>
-        <button
-          className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
-          onClick={handleReset}
-        >
-          重新配對
-        </button>
+        <ul className="">{/* <ListMatches /> */}</ul>
+        <div className="flex space-x-4">
+          <ButtonReset handleReset={handleReset} />
+          <ButtonPair />
+        </div>
+        <PairComponent starSign={starSign} />
       </div>
-      <Pairing />
     </>
   );
 }

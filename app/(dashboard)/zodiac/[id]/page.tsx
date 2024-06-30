@@ -26,13 +26,6 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className="">
         <ZodaicsPageInfo name={decodedId} data={data} />
       </div>
-      {/* {data?.map((zodiac: any) => {
-        return (
-          <div key={zodiac.id}>
-            <h1>{zodiac.name}</h1>
-            <p>{zodiac.luckyNumbers}</p>
-          </div>
-        ); */}
     </>
   );
 }

@@ -22,7 +22,7 @@ export default function ZodiacsList({ zodiacs }: { zodiacs: Zodiacs }) {
               onClick={() => handleSelectedZodiac(zodiac)}
             >
               <div className="text-xs">{zodiac.date}</div>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col  mt-4 items-center">
                 <Link
                   href={`/stars/${zodiac.name}`}
                   className={clsx(
@@ -42,7 +42,7 @@ export default function ZodiacsList({ zodiacs }: { zodiacs: Zodiacs }) {
           ))}
         </nav>
       </div>
-      <div className="mt-4">
+      <div className="mt-6">
         {selectedZodiac && <ZodiacDetails selectedZodiac={selectedZodiac} />}
       </div>
     </div>

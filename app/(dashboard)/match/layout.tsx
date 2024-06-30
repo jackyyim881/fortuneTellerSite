@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="p-4">
+    <main className="">
       <div className="">{children}</div>
       <ToastContainer />
     </main>

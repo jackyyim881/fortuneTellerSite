@@ -1,7 +1,5 @@
-import Header from "./header";
-
 import { Metadata } from "next";
-import NavbarSample from "@/components/ui/simple_with_menu_button_on_left";
+import NavbarComponent from "@/components/ui/simple_with_menu_button_on_left";
 export const metadata: Metadata = {
   title: "愛情兼容性計算機",
   icons: "calc.jpg",
@@ -25,7 +23,7 @@ const navigationLinks = [
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <main className="min-h-screen bg-gradient-to-r from-blue-400 to-indigo-500">
-      <NavbarSample navigation={navigationLinks} />
+      <NavbarComponent navigation={navigationLinks} />
       <div className="mx-auto max-w-[1200px] container">{children}</div>
     </main>
   );

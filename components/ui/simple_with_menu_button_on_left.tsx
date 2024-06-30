@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import { Fragment } from "react";
+import clsx from "clsx";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
   Disclosure,
@@ -20,7 +20,7 @@ type NavigationItem = {
 type NavbarSampleProps = {
   navigation: NavigationItem[];
 };
-export default function NavbarSample({ navigation }: NavbarSampleProps) {
+export default function NavbarComponent({ navigation }: NavbarSampleProps) {
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -47,16 +47,17 @@ export default function NavbarSample({ navigation }: NavbarSampleProps) {
                     height={40}
                   />
                 </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                <div className="hidden  sm:ml-6 sm:flex sm:space-x-8">
                   {navigation.map((item, index) => (
                     <a
                       key={item.name}
                       href={item.href}
-                      className={`inline-flex items-center px-1 pt-1 text-sm md:text-md font-medium ${
-                        item.current
-                          ? "border-indigo-500 text-gray-900"
-                          : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                      } ${index >= 5 ? "hidden lg:flex" : ""}`} // Assuming the first 3 items are critical
+                      className={clsx(
+                        "inline-flex items-center px-1 pt-1 text-sm md:text-md font-medium",
+                        item.current ? "text-gray-900" : "text-gray-500",
+                        "underline-animation",
+                        index >= 5 ? "hidden lg:flex" : ""
+                      )}
                     >
                       {item.name}
                     </a>

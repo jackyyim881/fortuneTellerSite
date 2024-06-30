@@ -20,8 +20,8 @@ export default function Page() {
   return (
     <div className="font-bold p-2">
       <div className="*:p-2">
-        <h1 className="text-3xl">生肖</h1>
-        <p className="text-base font-semibold leading-6 text-gray-900">
+        <h1 className="text__title">生肖</h1>
+        <p className="text_small_heading">
           生肖是一种根据出生年份来划分的区域，每个区域都有一个对应的生肖名字。
         </p>
       </div>

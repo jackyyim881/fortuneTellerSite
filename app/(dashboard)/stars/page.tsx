@@ -19,7 +19,7 @@ export default async function Page() {
         <div className="">
           <ZodiacsList zodiacs={data} />
         </div>
-        <div className="">
+        <div className="mt-4">
           <FortuneForm />
         </div>
       </div>

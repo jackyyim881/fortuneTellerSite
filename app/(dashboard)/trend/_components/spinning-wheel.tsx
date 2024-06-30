@@ -85,8 +85,14 @@ export default function SpinningWheel() {
   };
 
   return (
-    <section>
-      <div className=" flex justify-center ">
+    <section className="flex justify-center items-center">
+      <button
+        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        onClick={handleSpin}
+      >
+        Spin the Wheel!
+      </button>
+      <div className=" ">
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 500 500"
@@ -109,12 +115,7 @@ export default function SpinningWheel() {
           </g>
         </motion.svg>
       </div>
-      <button
-        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-        onClick={handleSpin}
-      >
-        Spin the Wheel!
-      </button>
+
       {showPopup && (
         <div className="popup">
           <div className="popup-inner">

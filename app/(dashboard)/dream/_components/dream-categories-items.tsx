@@ -8,16 +8,11 @@ type Categoryprops = {
 };
 export default function Categories({ data }: { data: Categoryprops[] }) {
   return (
-    <div className="flex flex-wrap items-baseline justify-between  rounded-md gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8">
+    <div className="  space-x-4 space-y-4 py-4 bg-white rounded-lg shadow-md  ">
       {data.map((category, index) => (
-        <Link
-          key={index}
-          href={`/dream/${category.name}`}
-          className="text-sm font-medium leading-6 text-gray-500"
-        >
+        <Link key={index} href={`/dream/${category.name}`} className=" ">
           <span
-            className=" p-4  bg-neutral-200 rounded-md 
-            text-black font-bold text-md hover:bg-slate-100 hover:text-slate-500 cursor-pointer
+            className=" ml-4 px-4 py-2  bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out
           
           "
           >

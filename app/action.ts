@@ -1,50 +1,20 @@
 "use server";
-import prisma from "@/lib/prisma";
-import { astro } from "iztro";
 import { currentUser } from "@clerk/nextjs/server";
-
-export async function createNewUser(data: FormData) {
-  const user = await currentUser();
-  if (!user) {
-    throw new Error("You must be signed in to use this feature");
-  }
-
-  const email = data.get("email") as string;
-  const starSignId = parseInt(data.get("starSignId") as string);
-  const existingUser = await prisma.user.findUnique({
-    where: {
-      email: email,
-    },
-  });
-
-  if (existingUser) {
-    throw new Error("A user with this email already exists");
-  }
-
-  await prisma.user.create({
-    data: {
-      clerkUserId: user?.id as string,
-      name: user.fullName as string,
-      email: email,
-      starSignId,
-    },
-  });
-  return { success: true };
-}
-export async function getStarSigns() {
-  const starSigns = await prisma.starSign.findMany({
-    select: {
-      id: true,
-      name: true,
-    },
-  });
-  return starSigns;
-}
+import { astro } from "iztro";
 
 enum Gender {
   Male = "男",
   Female = "女",
 }
+
+export const authuser = async () => {
+  const user = await currentUser();
+  if (!user) {
+    throw new Error("You must be signed in to use this feature");
+  }
+  return user;
+};
+
 export async function submitData(formData: FormData) {
   "use server";
   const rawFormData = {

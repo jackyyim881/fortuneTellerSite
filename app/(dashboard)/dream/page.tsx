@@ -26,15 +26,17 @@ export default function Page() {
   }, [searchParams]);
   const cachedataCategories = useMemo(() => data, []);
   return (
-    <div className="font-bold p-4">
-      <h1 className="text-3xl font-semibold leading-6 text-gray-900">夢境</h1>
-      <p className="mt-7 text-xl">
-        夢境是睡眠時的一種心理現象，通常是在睡眠時出現的一系列感知、情感、思想、意識和幻覺的綜合體驗。
-      </p>
+    <div className="font-bold p-2">
+      <div className="*:p-2">
+        <h1 className="text__title">夢境</h1>
+        <p className="text_small_heading">
+          夢境是睡眠時的一種心理現象，通常是在睡眠時出現的一系列感知、情感、思想、意識和幻覺的綜合體驗。
+        </p>
+      </div>
       <div className="mt-8">
         <Categories data={cachedataCategories} />
       </div>
-      <div className="w-full flex">
+      <div className="w-full space-x-4 flex">
         <div className="mt-8 w-1/2">
           <SearchResult search={handleSearch} />
         </div>

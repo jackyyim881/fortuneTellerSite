@@ -7,13 +7,41 @@
 }
 
 .text__title {
-  @apply text-base font-semibold leading-6 text-gray-900;
+  @apply mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl;
 }
 
+.text_small_heading {
+  @apply mt-6 text-lg leading-8 text-gray-100;
+}
+
+.button--match--primary {
+  @apply bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300;
+}
 .title {
-  @apply text-2xl  font-bold;
+  @apply text-4xl  font-bold;
 }
 
+.underline-animation {
+  position: relative;
+}
+
+.underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: blue;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 @keyframes rotate {
   from {
     transform: rotate(0deg);

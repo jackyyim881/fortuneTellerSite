@@ -13,12 +13,7 @@ const links = [
     description: "Learn how to integrate our tools with your app.",
     icon: BookOpenIcon,
   },
-  {
-    name: "API Reference",
-    href: "#",
-    description: "A complete API reference for our libraries.",
-    icon: QueueListIcon,
-  },
+
   {
     name: "Guides",
     href: "#",
@@ -74,11 +69,6 @@ export default function ExampleError() {
   return (
     <div className="bg-white">
       <main className="mx-auto w-full max-w-7xl px-6 pb-16 pt-10 sm:pb-24 lg:px-8">
-        <img
-          className="mx-auto h-10 w-auto sm:h-12"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          alt="Your Company"
-        />
         <div className="mx-auto mt-20 max-w-2xl text-center sm:mt-24">
           <p className="text-base font-semibold leading-8 text-indigo-600">
             404
@@ -138,7 +128,7 @@ export default function ExampleError() {
       <footer className="border-t border-gray-100 py-6 sm:py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-8 px-6 sm:flex-row lg:px-8">
           <p className="text-sm leading-7 text-gray-400">
-            &copy; Your Company, Inc. All rights reserved.
+            &copy; Fengshui Company, Inc. All rights reserved.
           </p>
           <div className="hidden sm:block sm:h-7 sm:w-px sm:flex-none sm:bg-gray-200" />
           <div className="flex gap-x-4">

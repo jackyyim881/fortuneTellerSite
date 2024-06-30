@@ -1,41 +1,39 @@
 import MatchList from "./_components/match-list";
 import FormList from "./_components/add-starsign-form-list";
 import { currentUser } from "@clerk/nextjs/server";
-import { getStarSigns } from "../../action";
-
+import { retrieveStarSigns, retrieveUserInfo } from "./action";
+import SectionInfo from "./section";
 export default async function MatchPage() {
   const user = await currentUser();
-  const starSigns = await getStarSigns();
-  const username = user?.username as string;
-  const email = user?.emailAddresses[0].emailAddress as string;
+  const starSigns = await retrieveStarSigns();
+
+  if (!user) {
+    return <div>Please sign in to access the dashboard.</div>;
+  }
+
+  const userInfo = await retrieveUserInfo();
+
+  console.log(userInfo);
+
+  // if userinfo is null, then we need to create a user
+  if (!userInfo) {
+    return <div>loading...</div>;
+  }
+  const { fullName, username } = user;
+  const email = user.emailAddresses[0].emailAddress;
+  const displayName = (fullName as string) || (username as string);
+  // const username = user?.username ?? "";
+  // const email = user?.emailAddresses[0].emailAddress ?? "";
+
   return (
     <div className="p-4">
-      <h1 className="title">配對</h1>
-      <div className="">
-        {!user ? (
-          <>
-            <div className="mt-5">
-              <div className="">
-                <MatchList matches={[]} />
-              </div>
-              <div className=" relative mt-5 text-2xl text-red-700   font-bold">
-                <p className="p-4">已成功注册</p>
-              </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="">
-              <p className="mt-5 text-red-500">請先登錄以查看配對</p>
-              <FormList
-                username={username}
-                email={email}
-                starSigns={starSigns}
-              />
-            </div>
-          </>
-        )}
-      </div>
+      <h1 className="text__title">配對</h1>
+
+      <SectionInfo
+        displayName={displayName}
+        email={email}
+        starSigns={starSigns}
+      />
     </div>
   );
 }
