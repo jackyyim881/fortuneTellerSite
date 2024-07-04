@@ -2,9 +2,8 @@ export default function SearchResult({ search }: { search: any }) {
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
       <h1 className="text-xl font-bold text-gray-800 mb-4">搜索结果</h1>
-      <div className="border-t-2 border-b-[0.5] border-gray-300 my-4"></div>
-
-      <div className="text-center">
+      <div className="flex-grow h-px bg-gradient-to-r from-gray-200 via-gray-400 to-gray-200"></div>
+      <div className="text-center mt-4">
         {search ? (
           <div>
             您搜索的关键词是{" "}

@@ -1,0 +1,80 @@
+{
+  "elements": [
+    { "id": 1, "name": "金" },
+    { "id": 2, "name": "木" },
+    { "id": 3, "name": "水" },
+    { "id": 4, "name": "火" },
+    { "id": 5, "name": "土" }
+  ],
+
+  "starSigns": [
+    { "name": "牡羊座" },
+    { "name": "金牛座" },
+    { "name": "雙子座" },
+    { "name": "巨蟹座" },
+    { "name": "獅子座" },
+    { "name": "處女座" },
+    { "name": "天秤座" },
+    { "name": "天蠍座" },
+    { "name": "射手座" },
+    { "name": "摩羯座" },
+    { "name": "水瓶座" },
+    { "name": "雙魚座" }
+  ],
+  "birthCharts": [
+    {
+      "userEmail": "jackyyim881@hotmail.com",
+      "birthDate": "1990-05-15T00:00:00Z",
+      "birthTime": "1990-05-15T08:30:00Z",
+      "birthPlace": "台北",
+      "ascendant": "獅子座",
+      "sunSign": "金牛座",
+      "moonSign": "處女座"
+    },
+    {
+      "userEmail": "jackyyim881@hotmail.com",
+      "birthDate": "1988-11-22T00:00:00Z",
+      "birthTime": "1988-11-22T15:45:00Z",
+      "birthPlace": "高雄",
+      "ascendant": "射手座",
+      "sunSign": "天蠍座",
+      "moonSign": "雙子座"
+    }
+  ],
+  "fengShuiReadings": [
+    {
+      "userEmail": "jackyyim881@hotmail.com",
+      "readingDate": "2024-07-01T10:00:00Z",
+      "propertyType": "公寓",
+      "direction": "東南",
+      "analysis": "東南方位有利於財運和事業發展。",
+      "recommendations": "在東南角擺放綠色植物，有助於增強正能量。"
+    },
+    {
+      "userEmail": "jackyyim881@hotmail.com",
+      "readingDate": "2024-07-02T14:00:00Z",
+      "propertyType": "獨棟屋",
+      "direction": "西北",
+      "analysis": "西北方位有利於人際關係和學習。",
+      "recommendations": "在西北角擺放水晶擺件，有助於提升學習效率。"
+    }
+  ],
+  "consultations": [
+    {
+      "id": 1,
+      "userId": 1,
+      "date": "2024-07-15T09:00:00Z",
+      "topic": "家居風水優化",
+      "notes": "客戶最近搬入新居，希望通過風水布局來改善事業運勢。重點關注書房和客廳的擺設。",
+      "recommendations": "1. 在書房東南角放置一盆綠植，如富貴竹。\n2. 客廳沙發背後擺放一幅山水畫，增強穩定感。\n3. 入戶門口放置一個小型石頭擺件，用於聚氣。"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "date": "2024-07-20T14:30:00Z",
+      "topic": "事業運勢提升",
+      "notes": "客戶最近工作遇到瓶頸，希望通過調整家居風水來改善事業運勢。特別關注辦公區域的布置。",
+      "recommendations": "1. 在辦公桌的西北方向放置一個小型水晶球，增強智慧能量。\n2. 使用深藍色或紫色的辦公用品，如筆筒或滑鼠墊，有助於吸引貴人運。\n3. 在辦公區域的東方放置一個小型盆栽，如迷你竹子，促進成長和進步。"
+    }
+  ]
+}

@@ -8,6 +8,8 @@ export async function createUserWithStarSign(data: FormData) {
     throw new Error("You must be signed in to use this feature");
   }
 
+  const username = user.fullName || user.username;
+
   const email = data.get("email") as string;
   const starSignId = parseInt(data.get("starSignId") as string);
   const existingUser = await prisma.user.findUnique({
@@ -23,9 +25,13 @@ export async function createUserWithStarSign(data: FormData) {
   await prisma.user.create({
     data: {
       clerkUserId: user?.id as string,
-      name: user.username as string,
+      name: username?.toString() as string,
       email: email,
-      starSignId,
+      starSign: {
+        connect: {
+          id: starSignId,
+        },
+      },
     },
   });
   return { success: true };

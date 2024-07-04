@@ -6,16 +6,10 @@ import "@/utils/i18n";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import OnlineUsers from "./onlineUsers";
-
 type User = {
   userId: string;
   starSignId: number;
   profileImageUrl: string;
-};
-
-type Message = {
-  room: string;
-  content: string;
 };
 
 export type State = {
@@ -26,133 +20,137 @@ export type State = {
   onlineUsers: User[];
 };
 
-export default function PairComponent(starSign: any) {
-  const user = useUser();
+const initialState: State = {
+  pair: null,
+  room: null,
+  messages: [],
+  newMessage: "",
+  onlineUsers: [],
+};
+
+export default function PairComponent({ starSign }: { starSign: string }) {
+  const { user, isLoaded } = useUser();
+
   const { t } = useTranslation();
-  const initialState = {
-    pair: null,
-    room: null,
-    messages: [],
-    newMessage: "",
-    onlineUsers: [],
-  };
+
   const [state, setState] = useState<State>(initialState);
-
   useEffect(() => {
-    if (user.isLoaded) {
-      const currentUser = {
-        userId: user.user?.fullName || user.user?.username,
-        starSignId: 1, // Example starSignId
-        profileImageUrl: user?.user?.imageUrl || "/user.png",
-      };
-      socket.emit("user_online", currentUser);
+    if (!isLoaded) return;
 
-      socket.on("update_user_list", (onlineUsers: User[]) => {
-        setState((prevState) => ({ ...prevState, onlineUsers }));
-      });
+    const currentUser = {
+      userId: user?.fullName || user?.username || "",
+      starSignId: starSign,
+      profileImageUrl: user?.imageUrl || "",
+    };
 
-      socket.on("pair_found", (pairedUser: User & { room: string }) => {
-        setState((prevState) => ({
-          ...prevState,
+    socket.emit("user_online", currentUser);
+
+    const socketHandlers = {
+      update_user_list: (onlineUsers: User[]) =>
+        setState((prev) => ({ ...prev, onlineUsers })),
+      pair_found: (pairedUser: User & { room: string }) =>
+        setState((prev) => ({
+          ...prev,
           pair: pairedUser,
           room: pairedUser.room,
-        }));
-      });
+        })),
+      pair_connected: ({
+        room,
+        pairedUser,
+      }: {
+        room: string;
+        pairedUser: User;
+      }) => console.log(`Connected to room: ${room} with user:`, pairedUser),
+      message: (content: string) =>
+        setState((prev) => ({
+          ...prev,
+          messages: [...prev.messages, content],
+        })),
+    };
 
-      socket.on("pair_connected", ({ room, pairedUser }) => {
-        console.log(`Connected to room: ${room} with user:`, pairedUser);
-        // Update the state or perform other actions as needed
-      });
+    Object.entries(socketHandlers).forEach(([event, handler]) => {
+      socket.on(event, handler);
+    });
 
-      socket.on("message", (content: string) => {
-        setState((prevState) => ({
-          ...prevState,
-          messages: [...prevState.messages, content],
-        }));
+    return () => {
+      Object.keys(socketHandlers).forEach((event) => {
+        socket.off(event);
       });
-
-      return () => {
-        socket.off("update_user_list");
-        socket.off("pair_found");
-        socket.off("pair_connected");
-        socket.off("message");
-      };
-    }
-  }, [user.isLoaded]);
+    };
+  }, [isLoaded, starSign, user]);
 
   return (
-    <div className="mt-10 inset-3">
-      <div className="flex space-x-20 justify-center items-center">
-        <div className="">
-          {state.pair === null && (
-            <p className="text-gray-100 text-4xl font-bold">
-              {t("finding_pair")}
-            </p>
-          )}
-        </div>
-        <div className="flex flex-col items-center mt-4">
-          <div className="w-24 h-24 rounded-full overflow-hidden">
-            <Image
-              src={user?.user?.imageUrl || "/user.png"}
-              alt="user image"
-              className="ring-2 ring-gray-200"
-              width={100}
-              height={100}
-            />
+    <div className="mt-10 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
+        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+          <div className="px-4 py-5 sm:px-6">
+            <h3 className="text-lg leading-6 font-medium text-gray-900">
+              {state.pair ? t("paired_with") : t("finding_pair")}
+            </h3>
           </div>
-          <div className="mt-4">
-            {state.pair && (
-              <div>
-                <h2 className="text-lg font-bold">{t("paired_with")}</h2>
-                <p>
-                  {t("user_id")} {state.pair.userId}
-                </p>
-                <p>
-                  {t("star_sign_id")} {state.pair.starSignId}
-                </p>
+          <div className="border-t border-gray-200">
+            <dl>
+              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">
+                  {t("your_profile")}
+                </dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0 h-10 w-10">
+                      <Image
+                        className="h-10 w-10 rounded-full"
+                        src={user?.imageUrl || ""}
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                    </div>
+                    <div className="ml-4">
+                      <div className="text-sm font-medium text-gray-900">
+                        {user?.fullName || user?.username}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {t("star_sign_id")} {starSign}
+                      </div>
+                    </div>
+                  </div>
+                </dd>
               </div>
-            )}
+              {state.pair && (
+                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">
+                    {t("paired_user")}
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <div className="flex items-center">
+                      <div className="flex-shrink-0 h-10 w-10">
+                        <Image
+                          className="h-10 w-10 rounded-full"
+                          src={state.pair.profileImageUrl}
+                          alt=""
+                          width={40}
+                          height={40}
+                        />
+                      </div>
+                      <div className="ml-4">
+                        <div className="text-sm font-medium text-gray-900">
+                          {state.pair.userId}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          {t("star_sign_id")} {state.pair.starSignId}
+                        </div>
+                      </div>
+                    </div>
+                  </dd>
+                </div>
+              )}
+            </dl>
           </div>
+        </div>
+        <div className="mt-6">
+          <OnlineUsers {...state} />
         </div>
       </div>
-      <OnlineUsers {...state} />
     </div>
   );
 }
-
-// const sendMessage = () => {
-//   if (state.room && state.newMessage) {
-//     socket.emit("message", { room: state.room, content: state.newMessage });
-//     setState((prevState) => ({ ...prevState, newMessage: "" }));
-//   }
-// };
-
-// {state.room && (
-//   <div className="mt-4">
-//     <h2 className="text-lg font-bold">
-//       {t("room_number")} {state.room}
-//     </h2>
-//     <div>
-//       {state.messages.map((msg, idx) => (
-//         <p key={idx}>{msg}</p>
-//       ))}
-//     </div>
-//     <input
-//       type="text"
-//       value={state.newMessage}
-//       onChange={(e) =>
-//         setState((prevState) => ({
-//           ...prevState,
-//           newMessage: e.target.value,
-//         }))
-//       }
-//       className="border border-gray-300 rounded-lg px-2 py-1 mt-2"
-//     />
-//     <button
-//       onClick={sendMessage}
-//       className="bg-blue-600 text-white py-2 px-4 rounded-lg mt-2 hover:bg-blue-700 transition duration-300"
-//     >
-//       {t("send_message")}
-//     </button>
-//   </div>
-// )}

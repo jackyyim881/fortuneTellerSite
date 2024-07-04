@@ -6,14 +6,10 @@ export type StarSign = {
   name: string;
 };
 
-type username = {
-  fullName: string;
-  username: string;
-};
 export default function FormList({
   username: initialUsername,
   email: initialEmail,
-  initialStarSignId = 1,
+  initialStarSignId,
   starSigns,
 }: {
   username: string;

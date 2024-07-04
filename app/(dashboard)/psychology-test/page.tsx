@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import CompleteForm from "./_components/complete-form";
 import PDFDownloadQuizAnswer from "./_components/pdf-download-quiz-answer";
 import ScoreResult from "./_components/score-result";
@@ -29,7 +30,7 @@ export default function Page() {
     return <div>加载中...</div>;
   }
 
-  if (!isCompleted) {
+  if (isCompleted) {
     return (
       <div className="flex justify-center ">
         <div className=" w-[500px] font-bold rounded-md bg-white">
@@ -38,7 +39,11 @@ export default function Page() {
               <h1 className="text-3xl  mt-4 ">你的结果</h1>
               <p className=" text-2xl mt-4 ">感谢你完成测试！</p>
             </div>
-            <div className="">
+            <div className="p-4">
+              <h2>
+                你的答案
+                <span className="text-[#FF0000]">({answers.length})</span>
+              </h2>
               {answers.map((answer, index) => (
                 <p key={index} className="mt-2">
                   {index + 1}. {answer}
@@ -63,6 +68,11 @@ export default function Page() {
   return (
     <div className="">
       <h1 className="text__title">{quizData.title}</h1>
+      <Link href="psychology-test/edit">
+        <button className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+          修改答案
+        </button>
+      </Link>
       <div>
         <h2 className="text_small_heading">{currentQuestion.question}</h2>
         <div className="flex space-x-4 mt-4">

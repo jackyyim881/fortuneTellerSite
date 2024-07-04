@@ -21,10 +21,11 @@ const data = [
 export default function Page() {
   const searchParams = useSearchParams();
   const handleSearch = useCallback(() => {
-    const search = searchParams.get("search");
-    return search;
+    return searchParams.get("search") || "";
   }, [searchParams]);
-  const cachedataCategories = useMemo(() => data, []);
+
+  const cachedDataCategories = useMemo(() => data, []);
+
   return (
     <div className="font-bold p-2">
       <div className="*:p-2">
@@ -34,13 +35,13 @@ export default function Page() {
         </p>
       </div>
       <div className="mt-8">
-        <Categories data={cachedataCategories} />
+        <Categories data={cachedDataCategories} />
       </div>
-      <div className="w-full space-x-4 flex">
-        <div className="mt-8 w-1/2">
-          <SearchResult search={handleSearch} />
+      <div className="w-full space-x-4 md:flex">
+        <div className="mt-8 md:w-full">
+          <SearchResult search={handleSearch()} />
         </div>
-        <div className="mt-8 w-1/2">
+        <div className="mt-8 md:w-full">
           <SearchBar />
         </div>
       </div>

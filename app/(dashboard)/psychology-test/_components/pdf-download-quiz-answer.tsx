@@ -21,17 +21,61 @@ export default function PDFDownloadQuizAnswer({
   const generatePDF = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!base64Font) return;
-    const doc = new jsPDF();
-    const font = `data:application/x-font-ttf;base64,${base64Font}`;
-    doc.addFileToVFS("TaipeiSans.ttf", font);
-    doc.addFont("TaipeiSans.ttf", "TaipeiSans", "normal");
-    doc.setFont("TaipeiSans");
-    (doc as jsPDF & { autoTable }).autoTable({
-      head: [["問題號", "答案"]],
-      body: answers.map((answer, index) => [index + 1, answer]),
+
+    const doc = new jsPDF({
+      orientation: "p",
+      unit: "mm",
+      format: "a4",
+      putOnlyUsedFonts: true,
+      floatPrecision: 16, // or "smart", can improve the output of numbers
     });
 
-    doc.save("quiz-answers.pdf");
+    const font = atob(base64Font);
+    doc.addFileToVFS("TaipeiSans.ttf", font);
+    doc.addFont("TaipeiSans.ttf", "TaipeiSans", "normal");
+
+    doc.setFont("TaipeiSans");
+    doc.setLanguage("zh-TW"); // 設置為繁體中文
+
+    // 添加標題
+    doc.setFontSize(20);
+    doc.text("測驗答案", 105, 20, { align: "center" });
+
+    // 添加日期
+    const today = new Date().toLocaleDateString("zh-TW", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    doc.setFontSize(12);
+    doc.text(`日期：${today}`, 20, 30);
+
+    // 使用 autoTable 生成表格
+    (doc as any).autoTable({
+      startY: 40,
+      head: [["問題號", "答案"]],
+      body: answers.map((answer, index) => [index + 1, answer]),
+      styles: { font: "TaipeiSans", fontStyle: "normal" },
+      headStyles: { fillColor: [41, 128, 185], textColor: 255, fontSize: 14 },
+      bodyStyles: { textColor: 0, fontSize: 12 },
+      alternateRowStyles: { fillColor: [245, 245, 245] },
+      margin: { top: 40 },
+    });
+
+    // 添加頁碼
+    const pageCount = (doc as any).internal.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+      doc.setPage(i);
+      doc.setFontSize(10);
+      doc.text(
+        `第 ${i} 頁，共 ${pageCount} 頁`,
+        105,
+        doc.internal.pageSize.height - 10,
+        { align: "center" }
+      );
+    }
+
+    doc.save("測驗答案.pdf");
   };
 
   return (

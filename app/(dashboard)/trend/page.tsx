@@ -1,4 +1,5 @@
 import SpinningWheel from "./_components/spinning-wheel";
+import ZodiacPicker from "./_components/zodiac-picker";
 
 export default function page() {
   return (
@@ -11,7 +12,7 @@ export default function page() {
         <h1 className="text-center text-3xl font-bold my-8">
           抽今天的幸運數字是
         </h1>
-        <SpinningWheel />
+        <ZodiacPicker />
       </div>
     </div>
   );

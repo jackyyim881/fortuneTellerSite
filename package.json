@@ -11,12 +11,15 @@
     "start-socket": "node --watch --loader ts-node/esm ../web-socket/server.ts",
     "start-all": "concurrently \"npm run dev\" \"npm run start-socket\"",
     "studio": "npx prisma studio",
+    "db-push": "npx prisma db push",
     "generate": "npx prisma generate",
     "cypress:open": "cypress open"
   },
   "module": "esnext",
   "prisma": {
-    "schema": "prisma/schema.prisma"
+    "schema": "prisma/schema.prisma",
+    "seed-1": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/scripts/seed.ts",
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/scripts/seedQuestions.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.28",
