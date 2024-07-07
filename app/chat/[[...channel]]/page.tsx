@@ -1,12 +1,9 @@
 "use client";
 import { AblyProvider, ChannelProvider } from "ably/react";
 import * as Ably from "ably";
-
-import dynamic from "next/dynamic";
-const Chat = dynamic(() => import("../_components/chat"), { ssr: false });
-
 import ChannelList from "../_components/channel-list";
-export default function Page({ params }) {
+import Chat from "../_components/chat";
+export default function ChatPage({ params }) {
   const client = new Ably.Realtime({ authUrl: "/api/ably" });
   const channelName = `chat:${params.channel}`;
   const channels = [

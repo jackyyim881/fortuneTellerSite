@@ -1,3 +1,5 @@
+import { Language } from "iztro/lib/data/types";
+
 export interface TarotCard {
   name: string;
   number: string;
@@ -33,6 +35,47 @@ export type Zodiac = {
     traits: string;
     compatibility: string;
     luckyNumber: string;
+  };
+};
+
+export type ZodiacDetailsProps = {
+  selectedZodiac: {
+    name: string;
+    date: string;
+    details: {
+      keyword: string;
+      planet: string;
+      color: string;
+      gemstone: string;
+      element: string;
+      traits: string;
+      compatibility: string;
+      luckyNumber: string;
+    };
+  };
+};
+
+export type MessageListProps = {
+  messages: any[];
+  currentUserId: string;
+};
+
+export type FormDataProps = {
+  solarDateStr: string;
+  gender: "男" | "女";
+  timeIndex: number;
+  fixLeap: boolean;
+  language: Language;
+};
+
+export type Message = {
+  id: string;
+  data: {
+    text: string;
+    profileUrl: string;
+    username: string;
+    avatarUrl: string;
+    userId: string;
   };
 };
 

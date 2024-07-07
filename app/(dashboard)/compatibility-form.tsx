@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { LocalStorage } from "../../components/local-storage-data";
+import { LocalStorage } from "@/components/local-storage-data";
 
 type SearchdataProps = {
   date1: string;

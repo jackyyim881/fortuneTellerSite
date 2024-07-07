@@ -1,26 +1,6 @@
 "use client";
-import { Zodiacs } from "@/types/types";
-import { CheckBadgeIcon, ClockIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
-import Image from "next/image";
-import { useState } from "react";
 
-interface ZodiacDetailsProps {
-  selectedZodiac: {
-    name: string;
-    date: string;
-    details: {
-      keyword: string;
-      planet: string;
-      color: string;
-      gemstone: string;
-      element: string;
-      traits: string;
-      compatibility: string;
-      luckyNumber: string;
-    };
-  };
-}
+import { ZodiacDetailsProps } from "@/types/types";
 
 export default function ZodiacDetails({ selectedZodiac }: ZodiacDetailsProps) {
   return (

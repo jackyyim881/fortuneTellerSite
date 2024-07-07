@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
 type MessageInputProps = {
   onSubmit: (message: string) => void;
   disabled?: boolean;
 };
-import { Input } from "@/components/ui/input";
 
 export default function MessageInput({
   onSubmit,
@@ -23,12 +23,12 @@ export default function MessageInput({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="w-full">
       <Input
         type="text"
         value={input}
         onChange={handleChange}
-        className={`absolute bottom-0`}
+        className={`absolute bottom-0   bg-slate-700 rounded-lg`}
         disabled={disabled}
         placeholder={
           disabled ? "This input has been disabled." : "Your message here"

@@ -2,7 +2,6 @@
 
 import MessageInput from "./message-input";
 import MessageList from "./message-list";
-
 import { useReducer } from "react";
 import { useChannel } from "ably/react";
 import { useUser } from "@clerk/nextjs";
@@ -11,39 +10,53 @@ const ADD = "ADD";
 
 const reducer = (prev, event) => {
   switch (event.name) {
-    // 👉 Append the message to messages
     case ADD:
       return [...prev, event];
+    default:
+      return prev;
   }
 };
 
 export default function Chat({ channelName }) {
-  const clerkUser = useUser();
+  const clerk_user = useUser();
 
-  const user = {
-    imageUrl: clerkUser.user?.imageUrl,
-  };
+  // const user = {
+  //   imageUrl: clerkUser.user?.imageUrl,
+  // };
+
+  const user = clerk_user?.user;
+
   const [messages, dispatch] = useReducer(reducer, []);
-  const { channel, publish } = useChannel(channelName, dispatch);
+  const { channel, ably } = useChannel(channelName, (message) => {
+    dispatch({ name: ADD, ...message });
+  });
 
   const publishMessage = (text) => {
-    // 👉 Publish event through Ably
-    publish({
-      name: ADD,
-      data: {
-        text,
-        avatarUrl: user.imageUrl,
-      },
-    });
+    if (user) {
+      channel.publish({
+        name: ADD,
+        data: {
+          text,
+          userId: user.id,
+          username: user.username || user.fullName,
+          avatarUrl: user.imageUrl,
+        },
+      });
+    }
   };
 
   return (
     <>
-      <div className="overflow-y-auto p-5">
-        <MessageList messages={messages} />
-      </div>
-      <div className="mt-auto p-5">
-        <MessageInput onSubmit={publishMessage} />
+      <div className="flex flex-col h-screen">
+        <div className="flex-grow overflow-y-auto p-5">
+          <MessageList
+            messages={messages}
+            currentUserId={user ? user.id : ""}
+          />
+        </div>
+        <div className="p-5">
+          <MessageInput onSubmit={publishMessage} />
+        </div>
       </div>
     </>
   );
