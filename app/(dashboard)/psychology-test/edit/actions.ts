@@ -2,6 +2,7 @@
 
 import { PsychTest, Question } from "@/types/psychTest";
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 export async function fetchPsychTestQuestions(): Promise<PsychTest> {
   const testMetadata = await prisma.test.findUnique({
     where: {
@@ -94,45 +95,43 @@ export async function editPsychTestQuestions(formData: FormData, id: string) {
   };
 }
 
-export async function editQuestion(prevState: any, formData: FormData) {
-  "use server";
+// export async function editQuestion(prevState: any, formData: FormData) {
+//   "use server";
+//   const rawFormData = {
+//     questionId: formData.get("questionId"),
+//     question: formData.get("question"),
+//     options: JSON.parse(formData.get("options") as string),
+//   };
 
-  const questionId = formData.get("questionId") as string;
-  const updatedQuestion = formData.get("question") as string;
-  const updatedOptions = JSON.parse(formData.get("options") as string);
-  console.log(questionId, updatedQuestion, updatedOptions);
-  try {
-    // First, update the question text
-    await prisma.question.update({
-      where: { id: questionId },
-      data: { question: updatedQuestion },
-    });
+//   const updatedQuestion = rawFormData.question;
 
-    // Then, update the options
-    // Assuming each option has an 'id' and 'text' field
-    for (const option of updatedOptions) {
-      await prisma.option.upsert({
-        where: { id: option.id },
-        update: { text: option.text },
-        create: {
-          id: option.id,
-          text: option.text,
-          questionId: questionId,
-        },
-      });
-    }
-    return {
-      message: "Question updated successfully",
-      options: updatedOptions,
-    };
-    // Here, implement the logic to update the question in your database
-    // This is a placeholder - replace with your actual update logic
+//   try {
+//     // First, update the question text
+//     await prisma.question.update({
+//       where: { id: questionId },
+//       data: { question: updatedQuestion },
+//     });
 
-    // Revalidate the page to show updated data
-    // revalidatePath(`/questions/${questionId}`);
-  } catch (error) {
-    return {
-      message: "Failed to update question",
-    };
-  }
-}
+//     // Then, update the options
+//     // Assuming each option has an 'id' and 'text' field
+//     for (const option of updatedOptions) {
+//       await prisma.option.upsert({
+//         where: { id: option.id },
+//         update: { text: option.text },
+//         create: {
+//           id: option.id,
+//           text: option.text,
+//           questionId: questionId,
+//         },
+//       });
+//     }
+//     return {
+//       message: "Question updated successfully",
+//       options: updatedOptions,
+//     };
+//   } catch (error) {
+//     return {
+//       message: "Failed to update question",
+//     };
+//   }
+// }

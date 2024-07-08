@@ -1,32 +1,31 @@
-import { PsychTest } from "@/types/psychTest";
 import Button from "./_components/button";
-import { editPsychTestQuestions, fetchPsychTestQuestions } from "./actions";
+import { fetchPsychTestQuestions } from "./actions";
 import FormList from "./edit-form-list";
-import { revalidatePath } from "next/cache";
+import Link from "next/link";
 
 export default async function EditPage() {
   const data = await fetchPsychTestQuestions();
   console.log(data);
-  async function submitForm(formData: FormData) {
-    "use server";
-    const updatedData = JSON.parse(
-      formData.get("data") as string
-    ) as PsychTest[];
-    await editPsychTestQuestions(updatedData, data.id);
-    revalidatePath("/edit");
-  }
 
   return (
     <>
       <div className="container mx-auto p-6 ">
         <div className="bg-white shadow-md rounded p-6">
-          <form action={submitForm}>
-            <div className="space-x-4 flex mb-4">
+          <div className="space-x-4 flex mb-4">
+            <Link href="save" className="text-blue-100 hover:underline">
               <Button title="Save" type="submit" state="save" />
+            </Link>
+            <Link href="edit" className="text-blue-100 hover:underline">
               <Button title="Edit" type="button" state="edit" />
-            </div>
-            <FormList initialData={data} />
-          </form>
+            </Link>
+            <Link href="create" className="text-blue-100 hover:underline">
+              <Button title="Create" type="button" state="create" />
+            </Link>
+            <Link href="test" className="text-blue-100 hover:underline">
+              <Button title="Test" type="button" state="test" />
+            </Link>
+          </div>
+          <FormList initialData={data} />
         </div>
       </div>
     </>
