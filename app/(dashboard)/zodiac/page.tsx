@@ -2,18 +2,18 @@ import Link from "next/link";
 import { useMemo } from "react";
 
 const animals = [
-  { id: "鼠", name: "鼠" },
-  { id: "牛", name: "牛" },
-  { id: "虎", name: "虎" },
-  { id: "兔", name: "兔" },
-  { id: "龙", name: "龙" },
-  { id: "蛇", name: "蛇" },
-  { id: "马", name: "马" },
-  { id: "羊", name: "羊" },
-  { id: "猴", name: "猴" },
-  { id: "鸡", name: "鸡" },
-  { id: "狗", name: "狗" },
-  { id: "猪", name: "猪" },
+  { id: "龙", name: "龙", icon: "🐉" },
+  { id: "蛇", name: "蛇", icon: "🐍" },
+  { id: "马", name: "马", icon: "🐎" },
+  { id: "羊", name: "羊", icon: "🐑" },
+  { id: "猴", name: "猴", icon: "🐒" },
+  { id: "鸡", name: "鸡", icon: "🐓" },
+  { id: "狗", name: "狗", icon: "🐕" },
+  { id: "猪", name: "猪", icon: "🐖" },
+  { id: "鼠", name: "鼠", icon: "🐁" },
+  { id: "牛", name: "牛", icon: "🐂" },
+  { id: "虎", name: "虎", icon: "🐅" },
+  { id: "兔", name: "兔", icon: "🐇" },
 ];
 export default function Page() {
   const MemoizedAnimalsCategories = useMemo(() => animals, []);
@@ -27,14 +27,15 @@ export default function Page() {
       </div>
       <ul className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
         {MemoizedAnimalsCategories.map((animal) => (
-          <Link href={`/zodiac/${animal.id}`} key={animal.name}>
-            <li
-              key={animal.id}
-              className="bg-white p-4 rounded-md shadow-md hover:bg-gray-100"
-            >
+          <li
+            key={animal.id}
+            className="bg-white p-4 rounded-md shadow-md hover:bg-gray-100 flex items-center"
+          >
+            <Link href={`/zodiac/${animal.id}`} className="flex items-center">
+              <span className="mr-2">{animal.icon}</span>
               {animal.name}
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

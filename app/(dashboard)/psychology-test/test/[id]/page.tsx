@@ -1,6 +1,7 @@
 import { fetchPsychTestWithQuestions } from "../actions";
-import QuestionOptionList from "./questions-option-list";
-import ButtonStateServer from "./button-state-server";
+import EditOptionsButton from "./_components/edit-options-button";
+import QuestionOptionList from "./_components/questions-option-list";
+import { updateQuestionOptions } from "./actions";
 
 export default async function TestIDInfoPage({
   params,
@@ -12,6 +13,20 @@ export default async function TestIDInfoPage({
 
   if (!fetchTestQuestion) {
     return <div className="text-center text-2xl mt-10">Test not found</div>;
+  }
+  async function handleUpdateOptions(
+    questionId: string,
+    newOptions: { id?: string; text: string }[]
+  ) {
+    "use server";
+    const result = await updateQuestionOptions(questionId, newOptions);
+    if (result.success) {
+      // You might want to refresh the page data here
+      // or update the state in the client component
+      return result.data;
+    } else {
+      throw new Error(result.error);
+    }
   }
 
   return (
@@ -34,7 +49,6 @@ export default async function TestIDInfoPage({
                 <h2 className="text-xl font-semibold text-indigo-800">
                   Question {index + 1}: {question.question}
                 </h2>
-                <ButtonStateServer />
               </div>
               <div className="px-6 py-4">
                 <p className="text-sm text-gray-600 mb-2">
@@ -59,7 +73,11 @@ export default async function TestIDInfoPage({
                   Options:
                 </h3>
                 <div className="">
-                  <QuestionOptionList options={question.options} />
+                  <QuestionOptionList
+                    questionId={question.id}
+                    options={question.options}
+                    onUpdateOptions={handleUpdateOptions}
+                  />
                 </div>
               </div>
             </div>

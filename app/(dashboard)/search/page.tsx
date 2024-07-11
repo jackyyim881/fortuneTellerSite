@@ -2,9 +2,9 @@
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const search = useSearchParams().get("query");
+  const search = useSearchParams().get("search_query");
   return (
-    <div className="inline-block p-2">
+    <div className="inline-block p-4  ">
       <h1
         className="
         text__title

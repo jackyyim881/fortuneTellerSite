@@ -11,15 +11,16 @@
     "start-socket": "node --watch --loader ts-node/esm ../web-socket/server.ts",
     "start-all": "concurrently \"npm run dev\" \"npm run start-socket\"",
     "studio": "npx prisma studio",
+    "seed": "npx prisma db seed",
     "db-push": "npx prisma db push",
     "generate": "npx prisma generate",
+    "db-push-and-generate": "npm run db-push && npm run generate",
     "cypress:open": "cypress open"
   },
   "module": "esnext",
   "prisma": {
     "schema": "prisma/schema.prisma",
-    "seed-1": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/scripts/seed.ts",
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/scripts/seedQuestions.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/scripts/seed.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.28",
@@ -39,11 +40,12 @@
     "clsx": "^2.1.1",
     "express": "^4.19.2",
     "fonteditor-core": "^2.4.0",
-    "framer-motion": "^11.2.10",
+    "framer-motion": "^11.2.14",
     "iztro": "^2.4.3",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
     "keyv": "^4.5.4",
+    "lucide-react": "^0.407.0",
     "next": "14.2.3",
     "next-i18next": "^15.3.0",
     "next-themes": "^0.3.0",

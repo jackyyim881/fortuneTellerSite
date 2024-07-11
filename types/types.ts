@@ -68,6 +68,17 @@ export type FormDataProps = {
   language: Language;
 };
 
+type Params = {
+  category: string;
+};
+
+type DreamArticle = {
+  id: string;
+  title: string;
+  content: string;
+  category: string;
+};
+
 export type Message = {
   id: string;
   data: {

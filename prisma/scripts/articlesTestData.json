@@ -1,0 +1,83 @@
+{
+  "categories": {
+    "人物": 1,
+    "生活": 2,
+    "物品": 3,
+    "身体": 4,
+    "动物": 5,
+    "植物": 6,
+    "鬼神": 7,
+    "建筑": 8,
+    "自然": 9,
+    "情爱": 10,
+    "梦文化": 11
+  },
+  "articles": {
+    "article1": {
+      "title": "梦的分析1",
+      "content": "梦的分析1内容",
+      "authorId": 1,
+      "dreamCategoryId": 1
+    },
+    "article2": {
+      "title": "梦的分析2",
+      "content": "梦的分析2内容",
+      "authorId": 2,
+      "dreamCategoryId": 2
+    },
+    "article3": {
+      "title": "梦的分析3",
+      "content": "梦的分析3内容",
+      "authorId": 1,
+      "dreamCategoryId": 3
+    },
+    "article4": {
+      "title": "梦的分析4",
+      "content": "梦的分析4内容",
+      "authorId": 2,
+      "dreamCategoryId": 4
+    },
+    "article5": {
+      "title": "梦的分析5",
+      "content": "梦的分析5内容",
+      "authorId": 1,
+      "dreamCategoryId": 5
+    },
+    "article6": {
+      "title": "梦的分析6",
+      "content": "梦的分析6内容",
+      "authorId": 2,
+      "dreamCategoryId": 6
+    },
+    "article7": {
+      "title": "梦的分析7",
+      "content": "梦的分析7内容",
+      "authorId": 1,
+      "dreamCategoryId": 7
+    },
+    "article8": {
+      "title": "梦的分析8",
+      "content": "梦的分析8内容",
+      "authorId": 2,
+      "dreamCategoryId": 8
+    },
+    "article9": {
+      "title": "梦的分析9",
+      "content": "梦的分析9内容",
+      "authorId": 1,
+      "dreamCategoryId": 9
+    },
+    "article10": {
+      "title": "梦的分析10",
+      "content": "梦的分析10内容",
+      "authorId": 2,
+      "dreamCategoryId": 10
+    },
+    "article11": {
+      "title": "梦的分析11",
+      "content": "梦的分析11内容",
+      "authorId": 1,
+      "dreamCategoryId": 11
+    }
+  }
+}

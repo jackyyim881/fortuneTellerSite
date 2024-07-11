@@ -1,35 +1,35 @@
-export interface PsychTest {
-  id: string;
-  title: string;
-  description: string;
-  questions: Question[];
-}
-
-export interface Question {
+export type Question = {
+  id?: string; // Optional, as it might not be present in the initial JSON data
   question: string;
   options: string[];
   type: string;
   category: string;
   instructions: string;
-}
+};
+export type PsychTest = {
+  id?: string; // Optional, as it might not be present in the initial JSON data
+  title: string;
+  description: string;
+  questions: Question[];
+};
 
-export interface TestCreationResult {
+export type TestCreationResult = {
   id: string;
   title: string;
   description: string;
   questions: QuestionCreationResult[];
-}
+};
 
-export interface QuestionCreationResult {
+export type QuestionCreationResult = {
   id: string;
   question: string;
   type: string;
   category: string;
   instructions: string;
   options: OptionCreationResult[];
-}
+};
 
-export interface OptionCreationResult {
+export type OptionCreationResult = {
   id: string;
   text: string;
-}
+};

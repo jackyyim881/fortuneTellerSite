@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma";
 import { PsychTest, TestCreationResult } from "../types/psychTest";
-
-const prisma = new PrismaClient();
 
 export async function insertPsychTest(
   testData: PsychTest

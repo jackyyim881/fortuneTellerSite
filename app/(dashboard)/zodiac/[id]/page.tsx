@@ -1,31 +1,9 @@
-import path from "path";
-import fs from "fs";
-import ZodaicsPageInfo from "../_components/zodaics_form";
-
-async function getZodaics({ zodiacName }: any) {
-  const filePath = path.join(process.cwd(), "public", "zodiacs.json");
-  const jsonData = fs.readFileSync(filePath, "utf-8");
-  const data = JSON.parse(jsonData);
-
-  const zodiacSigns = data.zodiacSigns;
-
-  const filteredZodiac = zodiacSigns.filter((zodiac: any) => {
-    return zodiac.name === zodiacName;
-  });
-
-  return filteredZodiac;
-}
-
+import ZodaicsPageInfo from "../_components/zodiac-card";
+import { getZodaics } from "./actions";
 export default async function Page({ params }: { params: { id: string } }) {
-  const decodedId = decodeURIComponent(params.id);
-  const name = decodedId;
-  const data = await getZodaics({ zodiacName: name });
+  const decodedZodiacName = decodeURIComponent(params.id);
+  const data = await getZodaics({ zodiacName: decodedZodiacName });
   console.log(data);
-  return (
-    <>
-      <div className="">
-        <ZodaicsPageInfo name={decodedId} data={data} />
-      </div>
-    </>
-  );
+
+  return <ZodaicsPageInfo name="中國" data={data} />;
 }

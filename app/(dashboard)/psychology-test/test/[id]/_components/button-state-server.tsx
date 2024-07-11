@@ -1,6 +1,6 @@
 // ButtonStateServer.tsx
 import ButtonStateClient from "./button-state";
-import { saveData } from "./actions"; // This is where we'll define our server action
+import { saveData } from "../actions"; // This is where we'll define our server action
 
 interface ButtonStateServerProps {
   initialData: any;

@@ -6,6 +6,8 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+
 }
 
 datasource db {
@@ -19,6 +21,8 @@ model User {
   email     String   @unique
   starSign  StarSign @relation(fields: [starSignId], references: [id])
   starSignId Int
+    dreamArticles   DreamArticle[]        @relation
+
   matches   User[]   @relation(name: "UserMatches")
   matchedBy User[]   @relation(name: "UserMatches")
   birthChart   BirthChart?
@@ -119,9 +123,33 @@ model Question {
   options      Option[]
 }
 
+
+
 model Option {
   id         String   @id @default(cuid())
   text       String
   questionId String
   question   Question @relation(fields: [questionId], references: [id])
+}
+
+
+model DreamCategory {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String
+  dreamArticles DreamArticle[]
+}
+
+
+
+model DreamArticle {
+  id               Int      @id @default(autoincrement())
+  title            String
+  content          String
+  author           User     @relation(fields: [authorId], references: [id])
+  authorId         Int
+  dreamCategoryId  Int      // Add the dreamCategoryId field
+  dreamCategory    DreamCategory @relation(fields: [dreamCategoryId], references: [id])
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

@@ -1,13 +1,13 @@
+import { PsychTest } from "@/types/psychTest";
 import { insertPsychTest } from "../../utils/insertPsychTest";
-import testData from "./psychTestData.json";
+import testPsyData from "./psychTestData.json";
 
-async function main() {
+export async function seedQuestionsTest() {
   try {
-    const result = await insertPsychTest(testData);
-    console.log("Test inserted successfully:", result);
+    const test = testPsyData as PsychTest;
+    const result = await insertPsychTest(test);
+    console.log("Psych Test inserted successfully:", result);
   } catch (error) {
-    console.error("Error inserting test:", error);
+    console.error("Error inserting psych test:", error);
   }
 }
-
-main();
