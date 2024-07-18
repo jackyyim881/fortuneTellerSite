@@ -7,3 +7,5 @@ Dockerfile
 .gitignore
 *.md
 .env
+.env.local
+.env.prod
