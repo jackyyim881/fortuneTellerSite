@@ -1,34 +1,19 @@
 import { Suspense } from "react";
-import PaginationButton from "./_components/pagination-button";
 import SearchBar from "./_components/search-button";
-import { fetchAllDreamArticles } from "./actions";
 import GroupArticles from "./_components/group-articles";
-
-type Article = {
-  title: string;
-  content: string;
-  authorId: number;
-  category: string;
-};
-
-type ArticlesPageProps = {
-  articles: Article[];
-  totalArticles: number;
-  currentPage: number;
-  pageSize: number;
-};
 
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { search: string; page?: number };
+  searchParams: { search?: string; page?: string };
 }) {
-  const articles = await fetchAllDreamArticles();
+  const search = searchParams.search || "";
+  const page = parseInt(searchParams.page || "1", 10);
 
   return (
-    <div className="p-2">
+    <div className="p-2 mt-5">
       <div className="flex justify-between">
-        <h1 className="text__title">夢境</h1>
+        <h1 className="menu__title">夢境</h1>
         <div className="md:w-[400px]">
           <SearchBar />
         </div>
@@ -38,10 +23,9 @@ export default async function Page({
       </p>
       <div className="mt-10">
         <Suspense fallback={<div>Loading...</div>}>
-          <GroupArticles articles={articles} page={1} search={""} />
+          <GroupArticles search={search} page={page} />
         </Suspense>
       </div>
-      {/* <PaginationButton prev={() => {}} next={() => {}} /> */}
     </div>
   );
 }

@@ -2,14 +2,15 @@
 // components/Form.tsx
 import React, { useState } from "react";
 import InputField from "@/components/ui/InputField";
-import { AstrolabeResult } from "@/types/astrotypes";
+import { AstrologyData } from "@/types/fengshuiTypes";
 export default function Form({ submitData }) {
-  const [results, setResults] = useState<AstrolabeResult[]>(null);
+  const [results, setResults] = useState<AstrologyData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
   async function handleSubmit(formData: FormData) {
     setError(null);
+    setIsProcessing(true);
     const responseString = await submitData(formData);
     const response = JSON.parse(responseString);
     if (response.success) {
@@ -18,26 +19,40 @@ export default function Form({ submitData }) {
       setError(response.error);
     }
   }
-
-  function renderResults() {
-    return results.map((result, index) => (
-      <div key={index}>
-        <h3>Result {index + 1}:</h3>
-        <pre>{JSON.stringify(result, null, 2)}</pre>
+  if (error) {
+    return (
+      <div className="text-red-500">
+        <h2>Error:</h2>
+        <p>{error}</p>
       </div>
-    ));
+    );
   }
 
   if (results) {
     return (
       <div className=" relative left-0  p-2">
-        <h2 className="text-black">紫星成功！</h2>
+        <h2 className="text-black text-xl">紫星成功！</h2>
 
         <div>
           <h3>Result:</h3>
-          <pre>{JSON.stringify(results, null, 2)}</pre>
         </div>
-        <button onClick={() => setResults([])}>Clear</button>
+        <button onClick={() => setResults(null)}>Clear</button>
+        <div>
+          <ul>
+            {results.palaces.map((palace, index) => (
+              <li key={index}>
+                {palace.earthlyBranch}
+                <ul>
+                  {palace.majorStars.map((star, starIndex) => (
+                    <li key={starIndex}>
+                      {star.name} ({star.brightness})
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }

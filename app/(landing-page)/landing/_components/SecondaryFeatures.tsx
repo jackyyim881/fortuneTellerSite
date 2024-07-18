@@ -1,6 +1,6 @@
 "use client";
 import { Container } from "./Container";
-import { TabGroup, TabList, TabPanels, Tab } from "@headlessui/react";
+import { TabGroup, TabList, Tab } from "@headlessui/react";
 import { useId } from "react";
 
 import clsx from "clsx";

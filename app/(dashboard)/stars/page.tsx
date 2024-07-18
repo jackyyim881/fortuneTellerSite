@@ -1,9 +1,8 @@
 import FortuneForm from "./_components/fortune-form";
-import ZodiacsList from "./_components/zodiacs-list";
 
 import fs from "fs";
 import path from "path";
-
+import ZodiacContainer from "./_components/zodiacs-container";
 async function getZodaics() {
   const filePath = path.join(process.cwd(), "public", "stars.json");
   const jsonData = fs.readFileSync(filePath, "utf-8");
@@ -12,16 +11,12 @@ async function getZodaics() {
 }
 
 export default async function Page() {
-  const data = await getZodaics();
+  const zodiacs = await getZodaics();
   return (
     <>
       <div className="">
-        <div className="">
-          <ZodiacsList zodiacs={data} />
-        </div>
-        <div className="mt-4">
-          <FortuneForm />
-        </div>
+        <ZodiacContainer initialZodiacs={zodiacs} />
+        <FortuneForm />
       </div>
     </>
   );

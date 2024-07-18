@@ -1,8 +1,8 @@
+"use server";
 import prisma from "@/lib/prisma";
 import { Category } from "./_components/categories-client";
 
 export async function fetchDreamCategories(): Promise<Category[]> {
-  "use server";
   const data = await prisma.dreamCategory.findMany({
     select: {
       name: true,
@@ -18,8 +18,6 @@ export async function fetchDreamCategories(): Promise<Category[]> {
 }
 
 export async function fetchAllDreamArticles(): Promise<any> {
-  "use server";
-
   // Fetch all articles and their related categories in a single query
   const allArticles = await prisma.dreamArticle.findMany({
     select: {
@@ -43,80 +41,6 @@ export async function fetchAllDreamArticles(): Promise<any> {
   }));
 
   return articles;
-}
-
-export async function searchArticlesGroupsUseCase(
-  search: string,
-  page: number = 1,
-  pageSize: number = 10
-): Promise<any> {
-  "use server";
-
-  // Calculate the offset for pagination
-  const skip = (page - 1) * pageSize;
-
-  // Fetch total count of matching articles
-  const totalArticles = await prisma.dreamArticle.count({
-    where: {
-      OR: [
-        {
-          title: {
-            contains: search,
-          },
-        },
-        {
-          content: {
-            contains: search,
-          },
-        },
-      ],
-    },
-  });
-
-  // Fetch paginated matching articles
-  const articles = await prisma.dreamArticle.findMany({
-    where: {
-      OR: [
-        {
-          title: {
-            contains: search,
-          },
-        },
-        {
-          content: {
-            contains: search,
-          },
-        },
-      ],
-    },
-    skip,
-    take: pageSize,
-    select: {
-      title: true,
-      content: true,
-      authorId: true,
-      dreamCategory: {
-        select: {
-          name: true,
-        },
-      },
-    },
-  });
-
-  // Format the articles
-  const formattedArticles = articles.map((article) => ({
-    title: article.title,
-    content: article.content,
-    authorId: article.authorId,
-    category: article.dreamCategory.name,
-  }));
-
-  return {
-    articles: formattedArticles,
-    totalArticles,
-    currentPage: page,
-    pageSize,
-  };
 }
 
 export async function fetchDreamArticles(category: string): Promise<any> {
@@ -153,4 +77,35 @@ export async function fetchDreamArticles(category: string): Promise<any> {
   }));
 
   return articles;
+}
+
+export async function searchArticlesGroupsUseCase(search = "", page = 1) {
+  const perPage = 10;
+  const skip = (page - 1) * perPage;
+
+  const where = search
+    ? {
+        OR: [
+          { title: { contains: search } },
+          { content: { contains: search } },
+        ],
+      }
+    : {};
+
+  const [data, total] = await Promise.all([
+    prisma.dreamArticle.findMany({
+      where,
+      take: perPage,
+      skip,
+      orderBy: { createdAt: "desc" },
+    }),
+    prisma.dreamArticle.count({ where }),
+  ]);
+
+  return {
+    data,
+    perPage,
+    total,
+    totalPages: Math.ceil(total / perPage),
+  };
 }

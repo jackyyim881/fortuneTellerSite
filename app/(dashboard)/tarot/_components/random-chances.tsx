@@ -1,35 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-
 interface Chance {
   href?: string | undefined;
   text?: string;
   img?: string | undefined;
 }
 
-export default function RandomChance() {
-  const [chances, setChances] = useState<Chance[]>([]);
-
-  useEffect(() => {
-    const fetchChances = async () => {
-      try {
-        const response = await fetch("/api/chance");
-        const data = await response.json();
-        console.log(data);
-        setChances(data);
-      } catch (error) {
-        console.error("Failed to fetch chances:", error);
-      }
-    };
-    fetchChances();
-  }, []);
+export default function RandomChance({
+  initialChances,
+}: {
+  initialChances: Chance[];
+}) {
+  const chances = initialChances;
+  if (!chances || chances.length === 0) {
+    return <div>加载中...</div>;
+  }
+  const htmRegex = /\.htm$/;
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto  mt-5">
       <div className="border p-4 rounded">
-        <h2 className="text-xl font-bold mb-2">籤詩 / 祈福籤</h2>
+        <h2 className=" menu__title mb-2">籤詩 / 祈福籤</h2>
         <ul className="flex flex-col bg-blue-300">
           {chances.map((chance, index) => (
             <li key={index} className="p-4">

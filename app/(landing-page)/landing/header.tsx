@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import { Container } from "@/components/Container";
+import { Container } from "./_components/Container";
 import { NavLink } from "@/components/NavLink";
 import Image from "next/image";
 import MobileNavigation from "@/components/MobileNavigation";

@@ -1,9 +1,8 @@
-import { Hero } from "@/components/Hero";
-import CardIcon from "./card-icon";
+import { Hero } from "./_components/Hero";
 import CardList from "./card-list";
 import Header from "./header";
-import { PrimaryFeatures } from "@/components/PrimaryFeatures";
-import SecondaryFeatures from "@/components/SecondaryFeatures";
+import { PrimaryFeatures } from "./_components/PrimaryFeatures";
+import SecondaryFeatures from "./_components/SecondaryFeatures";
 
 export default function Page() {
   return (

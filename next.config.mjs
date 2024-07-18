@@ -1,5 +1,14 @@
+import withBundleAnalyzer from "@next/bundle-analyzer";
+
+const analyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
+  output: "standalone",
+  productionBrowserSourceMaps: false,
+  compress: true,
   env: {
     API_KEY: process.env.API_URL,
     NEXT_ABLY_API_KEY: process.env.NEXT_ABLY_API_KEY,
@@ -23,4 +32,4 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-export default nextConfig;
+export default analyzer(nextConfig);

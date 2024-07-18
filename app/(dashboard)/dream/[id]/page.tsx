@@ -18,7 +18,7 @@ export default async function DreamCategoryPage({
           <Link href="/dream">
             <span className="text-blue-100 hover:underline">Back</span>
           </Link>
-          <h1 className="  text__title">
+          <h1 className="  menu__title">
             <Suspense fallback={<Loading />}>
               <ArticleList category={DecodedChineseCategory} />
             </Suspense>

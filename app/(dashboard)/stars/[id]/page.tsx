@@ -1,7 +1,5 @@
 export default async function Page({ params }: { params: { id: string } }) {
   const decodedId = decodeURIComponent(params.id);
-  // const getzodiacSigns = await getzodiacSigns(dec);
-
   return (
     <>
       <div className="ml-4">

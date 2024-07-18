@@ -85,9 +85,9 @@ const InfoItem = ({ title, content }) => (
 
 export default function ZodaicsPageInfo({ name, data }) {
   return (
-    <div className={`${colors.background} min-h-screen p-8`}>
+    <div className={` min-h-screen p-8`}>
       <motion.h1
-        className={`text-4xl font-bold ${colors.text} mb-8`}
+        className={` menu__title mb-8`}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}

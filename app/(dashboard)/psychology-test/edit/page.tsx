@@ -5,8 +5,6 @@ import Link from "next/link";
 
 export default async function EditPage() {
   const data = await fetchPsychTestQuestions();
-  console.log(data);
-
   return (
     <>
       <div className="container mx-auto p-6 ">

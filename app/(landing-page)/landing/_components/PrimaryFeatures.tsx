@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 
-import { Container } from "@/components/Container";
+import { Container } from "./Container";
 import backgroundImage from "@/public/background-features.jpg";
 import screenshotExpenses from "@/public/images/screenshots/expenses.png";
 import screenshotPayroll from "@/public/images/screenshots/payroll.png";

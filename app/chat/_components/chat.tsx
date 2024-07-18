@@ -20,10 +20,6 @@ const reducer = (prev, event) => {
 export default function Chat({ channelName }) {
   const clerk_user = useUser();
 
-  // const user = {
-  //   imageUrl: clerkUser.user?.imageUrl,
-  // };
-
   const user = clerk_user?.user;
 
   const [messages, dispatch] = useReducer(reducer, []);

@@ -1,3 +1,5 @@
+"use server";
+
 import {
   zodiacSign,
   zodiacAnalysis,
@@ -5,7 +7,7 @@ import {
   compatibilityScore,
 } from "@/utils/zodiac";
 
-type CompatibilityResult = {
+export type CompatibilityResult = {
   score: number;
   analysis1: string;
   analysis2: string;
@@ -19,12 +21,15 @@ type SearchDataProps = {
   time2: string;
 };
 
-export const calculateCompatibility = ({
+export async function calculateCompatibility({
   date1,
   time1,
   date2,
   time2,
-}: SearchDataProps): CompatibilityResult => {
+}: SearchDataProps): Promise<CompatibilityResult> {
+  // Simulate some async operation (e.g., database lookup or external API call)
+  await new Promise((resolve) => setTimeout(resolve, 100));
+
   const [birth1, birth2] = [new Date(date1), new Date(date2)];
 
   const [sign1, sign2] = [
@@ -68,4 +73,4 @@ export const calculateCompatibility = ({
     analysis2,
     compatibilityAnalysis: compatibilityAnalysisResult,
   };
-};
+}

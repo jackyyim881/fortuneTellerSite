@@ -1,115 +1,87 @@
-"use client";
-import { useState, useEffect, FormEvent } from "react";
-import { useRouter } from "next/navigation";
-import { LocalStorage } from "@/components/local-storage-data";
+import { submitCompatibilityData } from "./actions";
+import { redirect } from "next/navigation";
 
-type SearchdataProps = {
-  date1: string;
-  time1: string;
-  date2: string;
-  time2: string;
-};
-
-type CompatibilityProps = {
-  compatibility: any;
-  href?: string;
-  title?: string;
-};
-
-export default function CompatibilityForm({ href, title }: CompatibilityProps) {
-  const router = useRouter();
-  const [inputs, setInputs] = useState<SearchdataProps>({
-    date1: "",
-    time1: "00:00",
-    date2: "",
-    time2: "00:00",
-  });
-
-  useEffect(() => {
-    const keysToStateMap = {};
-    for (const key in keysToStateMap) {
-      const savedValue = localStorage.getItem(key);
-      if (savedValue) {
-        setInputs((prev) => ({
-          ...prev,
-          [key]: savedValue,
-        }));
-      }
-    }
-  }, []);
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const dataToStore = {
-      date1: inputs.date1,
-      time1: inputs.time1,
-      date2: inputs.date2,
-      time2: inputs.time2,
-    };
-    e.preventDefault();
-    LocalStorage(dataToStore);
-    router.push(
-      `/result?date1=${inputs.date1}&time1=${inputs.time1}&date2=${inputs.date2}&time2=${inputs.time2}`
+export default async function CompatibilityForm() {
+  async function handleSubmit(formData: FormData) {
+    "use server";
+    const result = await submitCompatibilityData(formData);
+    redirect(
+      `/result?date1=${result.date1}&time1=${result.time1}&date2=${result.date2}&time2=${result.time2}`
     );
-  };
+  }
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
-      <h2 className="text-2xl text-center font-bold mb-6">{title}</h2>
-      <form onSubmit={handleSubmit}>
-        <div role="group" className="mb-6" aria-labelledby="label-date1">
-          <label className="label__text" htmlFor="date1" id="label-date1">
+      <h2 className="text-2xl text-center font-bold mb-6">愛情兼容性計算器</h2>
+      <form action={handleSubmit}>
+        <div className="mb-6">
+          <label
+            htmlFor="date1"
+            className="block mb-2 text-sm font-medium text-gray-900"
+          >
             甲方 - 出生日期
           </label>
           <input
             type="date"
-            value={inputs.date1}
-            onChange={(e) => setInputs({ ...inputs, date1: e.target.value })}
             required
             id="date1"
             name="date1"
-            className="input"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            aria-labelledby="date1-label"
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="time1" className="label__text">
+          <label
+            htmlFor="time1"
+            className="block mb-2 text-sm font-medium text-gray-900"
+          >
             時間（當地時間）
           </label>
           <input
             type="time"
             id="time1"
-            value={inputs.time1}
-            onChange={(e) => setInputs({ ...inputs, time1: e.target.value })}
-            className="input"
+            name="time1"
+            defaultValue="00:00"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            aria-labelledby="time1-label"
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="date2" className="label__text">
+          <label
+            htmlFor="date2"
+            className="block mb-2 text-sm font-medium text-gray-900"
+          >
             乙方 - 出生日期
           </label>
           <input
             id="date2"
             type="date"
-            value={inputs.date2}
-            onChange={(e) => setInputs({ ...inputs, date2: e.target.value })}
             required
-            className="input"
+            name="date2"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            aria-labelledby="date2-label"
           />
         </div>
         <div className="mb-6">
-          <label className="label__text" htmlFor="time2">
+          <label
+            htmlFor="time2"
+            className="block mb-2 text-sm font-medium text-gray-900"
+          >
             時間（當地時間）
           </label>
           <input
             id="time2"
             type="time"
-            value={inputs.time2}
-            onChange={(e) => setInputs({ ...inputs, time2: e.target.value })}
-            className="input"
+            name="time2"
+            defaultValue="00:00"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            aria-labelledby="time2-label"
           />
         </div>
-        <button type="submit" className="button__primary">
+        <button
+          type="submit"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        >
           計算兼容性
         </button>
       </form>

@@ -32,7 +32,7 @@ export default function TarotRandomCard() {
     return null; // Optionally, show a loading indicator or a message instead
   }
   return (
-    <div className="p-4">
+    <div className="mt-5">
       <button
         onClick={fetchRandomCard}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

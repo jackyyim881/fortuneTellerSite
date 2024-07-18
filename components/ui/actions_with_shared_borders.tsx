@@ -1,52 +1,87 @@
 "use client";
 
 import { ZodiacDetailsProps } from "@/types/types";
+import { Sun, Moon, Star } from "lucide-react";
 
 export default function ZodiacDetails({ selectedZodiac }: ZodiacDetailsProps) {
   return (
-    <div
-      className="divide-y divide-gray-200 overflow-hidden rounded-lg h-[400px] 
-    
-      bg-white 
-    shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0"
-    >
-      <div className="bg-gradient-to-r from-indigo-900 via-purple-900 to-purple-700 text-white rounded-lg shadow-lg p-6">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="w-full md:w-1/3 flex flex-col items-center mb-4 md:mb-0">
-            <h2 className="text-4xl  font-bold mt-2">{selectedZodiac?.name}</h2>
-            <h3 className="text-xl">({selectedZodiac?.date})</h3>
+    <div className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-lg shadow-2xl overflow-hidden">
+      <div className="p-6 md:p-8">
+        <div className="flex flex-col md:flex-row items-center justify-between mb-6">
+          <div className="flex items-center mb-4 md:mb-0">
+            <Sun className="w-12 h-12 mr-4 text-yellow-300" />
+            <div>
+              <h2 className="text-4xl font-bold">{selectedZodiac?.name}</h2>
+              <h3 className="text-xl opacity-75">({selectedZodiac?.date})</h3>
+            </div>
+          </div>
+          <div className="text-right">
+            <p className="text-2xl font-semibold">
+              {selectedZodiac?.details?.keyword}
+            </p>
+            <p className="opacity-75">關鍵詞</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <DetailItem
+              icon={<Moon className="w-5 h-5" />}
+              label="主宰星"
+              value={selectedZodiac?.details?.planet}
+            />
+            <DetailItem
+              icon={
+                <div
+                  className="w-5 h-5 rounded-full"
+                  style={{ backgroundColor: selectedZodiac?.details?.color }}
+                />
+              }
+              label="顏色"
+              value={selectedZodiac?.details?.color}
+            />
+            <DetailItem
+              icon={<Star className="w-5 h-5" />}
+              label="寶石"
+              value={selectedZodiac?.details?.gemstone}
+            />
+          </div>
+          <div className="space-y-4">
+            <DetailItem
+              icon={<div className="w-5 h-5 rounded-full bg-blue-300" />}
+              label="元素"
+              value={selectedZodiac?.details?.element}
+            />
+            <DetailItem
+              icon={<div className="w-5 h-5 text-center font-bold">♥</div>}
+              label="配對星座"
+              value={selectedZodiac?.details?.compatibility}
+            />
+            <DetailItem
+              icon={<div className="w-5 h-5 text-center font-bold">#</div>}
+              label="幸運數字"
+              value={selectedZodiac?.details?.luckyNumber}
+            />
           </div>
         </div>
       </div>
-      <div className="w-full grid grid-cols-2 text-sm leading-6 has-[400px] p-8">
-        <div className="*:p-2 ">
-          <p className="">
-            <strong>關鍵詞:</strong> {selectedZodiac?.details?.keyword}
-          </p>
-          <p>
-            <strong>主宰星:</strong> {selectedZodiac?.details?.planet}
-          </p>
-          <p>
-            <strong>顏色:</strong> {selectedZodiac?.details?.color}
-          </p>
-          <p>
-            <strong>寶石:</strong> {selectedZodiac?.details?.gemstone}
-          </p>
-          <p>
-            <strong>元素:</strong> {selectedZodiac?.details?.element}
-          </p>
-        </div>
-        <div className="*:p-2">
-          <p>
-            <strong>性格特徵:</strong> {selectedZodiac?.details?.traits}
-          </p>
-          <p>
-            <strong>配對星座:</strong> {selectedZodiac?.details?.compatibility}
-          </p>
-          <p>
-            <strong>幸運數字:</strong> {selectedZodiac?.details?.luckyNumber}
-          </p>
-        </div>
+      <div className="bg-white text-gray-800 p-6 mt-6">
+        <h4 className="text-xl font-semibold mb-3">性格特徵</h4>
+        <p className="text-lg leading-relaxed">
+          {selectedZodiac?.details?.traits}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function DetailItem({ icon, label, value }) {
+  return (
+    <div className="flex items-center">
+      <div className="mr-3 text-yellow-300">{icon}</div>
+      <div>
+        <p className="font-medium">{value}</p>
+        <p className="text-sm opacity-75">{label}</p>
       </div>
     </div>
   );

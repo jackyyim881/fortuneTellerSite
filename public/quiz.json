@@ -1,62 +1,62 @@
 {
-  "title": "心理测试",
-  "description": "这是一个高标准的心理测试，旨在了解你的心理状态和行为模式。请认真回答以下问题，以便我们提供准确的分析。",
+  "title": "心理測試",
+  "description": "這是一個高標準的心理測試，旨在了解你的心理狀態和行為模式。請認真回答以下問題，以便我們提供準確的分析。",
   "questions": [
     {
-      "question": "你喜欢社交活动吗？",
-      "options": ["是", "否", "有时"],
+      "question": "你喜歡社交活動嗎？",
+      "options": ["是", "否", "有時"],
       "type": "multiple-choice",
-      "category": "社交倾向",
-      "instructions": "请根据你通常的社交行为选择一个选项。"
+      "category": "社交傾向",
+      "instructions": "請根據你通常的社交行為選擇一個選項。"
     },
     {
-      "question": "请评价你目前的压力水平。",
+      "question": "請評價你目前的壓力水平。",
       "options": ["低", "中", "高"],
       "type": "multiple-choice",
-      "category": "压力管理",
-      "instructions": "请根据你最近一周的情况进行评价。"
+      "category": "壓力管理",
+      "instructions": "請根據你最近一周的情況進行評價。"
     },
     {
-      "question": "你放松的首选方式是什么？",
-      "options": ["阅读", "看电视", "运动"],
+      "question": "你放鬆的首選方式是什麼？",
+      "options": ["閱讀", "看電視", "運動"],
       "type": "multiple-choice",
-      "category": "放松技巧",
-      "instructions": "请选择一个你最常使用的放松方式。"
+      "category": "放鬆技巧",
+      "instructions": "請選擇一個你最常使用的放鬆方式。"
     },
     {
-      "question": "你通常在面对紧急情况时会如何反应？",
-      "options": ["保持冷静", "感到紧张", "立即寻求帮助"],
+      "question": "你通常在面對緊急情況時會如何反應？",
+      "options": ["保持冷靜", "感到緊張", "立即尋求幫助"],
       "type": "multiple-choice",
-      "category": "应对策略",
-      "instructions": "请回忆你最近一次遇到紧急情况时的反应。"
+      "category": "應對策略",
+      "instructions": "請回憶你最近一次遇到緊急情況時的反應。"
     },
     {
-      "question": "你认为自己是一个有计划的人吗？",
-      "options": ["是", "否", "有时"],
+      "question": "你認為自己是一個有計劃的人嗎？",
+      "options": ["是", "否", "有時"],
       "type": "multiple-choice",
-      "category": "计划能力",
-      "instructions": "请根据你平时的行为习惯进行回答。"
+      "category": "計劃能力",
+      "instructions": "請根據你平時的行為習慣進行回答。"
     },
     {
-      "question": "当你感到沮丧时，你通常会做什么？",
-      "options": ["倾诉朋友", "自己消化", "转移注意力"],
+      "question": "當你感到沮喪時，你通常會做什麼？",
+      "options": ["傾訴朋友", "自己消化", "轉移注意力"],
       "type": "multiple-choice",
-      "category": "情绪调节",
-      "instructions": "请选择一个你最常用的方法。"
+      "category": "情緒調節",
+      "instructions": "請選擇一個你最常用的方法。"
     },
     {
-      "question": "你在团队中通常扮演什么角色？",
-      "options": ["领导者", "协作者", "观察者"],
+      "question": "你在團隊中通常扮演什麼角色？",
+      "options": ["領導者", "協作者", "觀察者"],
       "type": "multiple-choice",
-      "category": "团队角色",
-      "instructions": "请回忆你在最近一个团队活动中的角色。"
+      "category": "團隊角色",
+      "instructions": "請回憶你在最近一個團隊活動中的角色。"
     },
     {
-      "question": "你对未来的计划有多明确？",
-      "options": ["非常明确", "比较模糊", "没有计划"],
+      "question": "你對未來的計劃有多明確？",
+      "options": ["非常明確", "比較模糊", "沒有計劃"],
       "type": "multiple-choice",
-      "category": "未来规划",
-      "instructions": "请根据你目前对未来的规划情况进行回答。"
+      "category": "未來規劃",
+      "instructions": "請根據你目前對未來的規劃情況進行回答。"
     }
   ]
 }

@@ -7,7 +7,7 @@ export default function Page() {
     <div className="inline-block p-4  ">
       <h1
         className="
-        text__title
+        menu__title
       "
       >
         Search

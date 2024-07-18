@@ -15,7 +15,7 @@ export default async function MatchPage() {
 
   return (
     <div className="p-4">
-      <h1 className="text__title">配對</h1>
+      <h1 className="menu__title">配對</h1>
       <SectionInfo
         displayName={displayName}
         email={email}

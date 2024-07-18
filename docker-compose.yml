@@ -12,15 +12,5 @@ services:
     ports:
       - "5436:5432"
 
-  app:
-    build: .
-    environment:
-      DATABASE_URL: "postgresql://user:password@postgres:5435/star_signs_db?schema=public"
-    depends_on:
-      - postgres
-    ports:
-      - "3000:3000"
-    command: npm run dev
-
 volumes:
   postgres-data:

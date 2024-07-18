@@ -1,5 +1,15 @@
 import { Language } from "iztro/lib/data/types";
 
+export interface Question {
+  id: string;
+  question: string;
+  options: { id: string; option: string; questionId: string }[];
+}
+
+export interface QuizMenuListProps {
+  questions: Question[];
+}
+
 export interface TarotCard {
   name: string;
   number: string;
@@ -91,3 +101,33 @@ export type Message = {
 };
 
 export type Zodiacs = Zodiac[];
+
+// interface StarSign {
+//   name: string;
+// }
+
+// interface User {
+//   name: string;
+//   email: string;
+//   clerkUserId: string;
+//   starSign: string;
+// }
+
+// interface BirthChart {
+//   userEmail: string;
+//   birthDate: string;
+//   birthTime: string;
+//   birthPlace: string;
+//   ascendant: string;
+//   sunSign: string;
+//   moonSign: string;
+// }
+
+// interface FengShuiReading {
+//   userEmail: string;
+//   readingDate: string;
+//   propertyType: string;
+//   direction: string;
+//   analysis: string;
+//   recommendations: string;
+// }

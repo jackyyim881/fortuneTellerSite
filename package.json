@@ -15,7 +15,8 @@
     "db-push": "npx prisma db push",
     "generate": "npx prisma generate",
     "db-push-and-generate": "npm run db-push && npm run generate",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "production": "npm run build && npm start"
   },
   "module": "esnext",
   "prisma": {
@@ -29,6 +30,7 @@
     "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.1.4",
     "@keyv/postgres": "^1.4.11",
+    "@next/bundle-analyzer": "^14.2.5",
     "@prisma/client": "^5.15.0",
     "@types/socket.io-client": "^3.0.0",
     "ably": "^2.2.0",
