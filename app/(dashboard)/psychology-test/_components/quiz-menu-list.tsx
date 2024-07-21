@@ -29,7 +29,7 @@ export default function QuizMenuList({ questions }) {
 
   const currentQuestion = quizData.questions[currentQuestionIndex];
 
-  return (
+  return (  
     <>
       <div className="container mx-auto p-4">
         <h1 className="menu__title mb-4">{quizData.title}</h1>

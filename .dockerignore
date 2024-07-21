@@ -9,3 +9,6 @@ Dockerfile
 .env
 .env.local
 .env.prod
+!.next/standalone
+!.next/static
+

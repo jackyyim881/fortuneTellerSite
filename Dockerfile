@@ -1,26 +1,19 @@
 # Stage 1: Base
-FROM node:20-alpine AS base
+FROM node:20-slim AS base
 
 # Install Python, make, and g++ for node-gyp
-RUN apk add --no-cache python3 make g++
-
+FROM base AS builder
 # Set working directory
 WORKDIR /app
 
 # Copy package.json and package-lock.json (if available)
-COPY package*.json ./
+COPY package.json package-lock.json* ./
+RUN npm ci
 
 # Set the Python path for node-gyp
-ENV PYTHON=/usr/bin/python3
 
 # Install dependencies
-RUN npm ci || (npm install && npm cache clean --force)
-
-# Copy Prisma schema and generate client
-COPY prisma ./prisma
-RUN npx prisma generate
-
-# Copy rest of the application code
+RUN npm ci
 COPY . .
 
 # Stage 2: Development
@@ -33,7 +26,6 @@ EXPOSE 3000
 CMD ["npm", "run", "dev"]
 
 # Stage 3: Builder
-FROM base AS builder
 
 # Build the Next.js application for production
 RUN npm run build
