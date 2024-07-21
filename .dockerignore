@@ -11,4 +11,4 @@ Dockerfile
 .env.prod
 !.next/standalone
 !.next/static
-
+./scripts
