@@ -5,7 +5,10 @@ FROM base AS builder
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm install --legacy-peer-deps
+COPY prisma ./prisma/
+RUN npx prisma generate
+
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
