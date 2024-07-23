@@ -11,7 +11,6 @@ type Question = {
 };
 export default async function QuizPage() {
   const questions: Question[] = await fetchQuizQuestions();
-  console.log(questions);
   return (
     <>
       <QuizMenuList questions={questions} />

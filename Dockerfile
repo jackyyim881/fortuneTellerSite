@@ -1,15 +1,21 @@
-FROM node:21-slim AS base
+FROM node:18-alpine as base
+
+# Install dependencies for node-gyp
+RUN apk add --no-cache python3 make g++
 
 FROM base AS builder
-
+# Set the working directory
 WORKDIR /app
 
+# Install dependencies only when needed
 COPY package.json package-lock.json* ./
-RUN npm install --legacy-peer-deps
+RUN npm ci || (npm install && npm cache clean --force)
+
 COPY prisma ./prisma/
+# Generate Prisma client
+RUN npx prisma generate
 
 COPY . .
-RUN npx prisma generate
 
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
@@ -23,7 +29,6 @@ ARG NEXT_PUBLIC_CLERK_SIGN_UP_URL
 ARG BRIGHT_DATA_AUTH
 ARG API_KEY
 
-
 RUN npm run build
 
 FROM base AS runner
@@ -36,6 +41,8 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
@@ -49,6 +56,4 @@ EXPOSE 3000
 
 ENV PORT=3000
 
-ARG HOSTNAME
-
-CMD node server.js
+CMD ["node", "server.js"]
