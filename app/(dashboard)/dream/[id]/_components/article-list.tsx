@@ -1,4 +1,3 @@
-import { DreamArticle } from "@prisma/client";
 import { fetchDreamArticles } from "../../actions";
 
 export async function ArticleList({ category }: { category: string }) {
@@ -14,7 +13,7 @@ export async function ArticleList({ category }: { category: string }) {
 
   return (
     <section className="p-4 space-y-6">
-      {articles.map((article: DreamArticle) => (
+      {articles.map((article: any) => (
         <div key={article.id} className="p-6 bg-white rounded-lg shadow-md">
           <h2 className="text-3xl text-gray-700 font-bold mb-2">
             {article.title}

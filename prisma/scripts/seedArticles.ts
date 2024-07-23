@@ -1,11 +1,10 @@
 import { insertArticle } from "../../utils/insertArticles";
 import { Category, Article, Data } from "../../types/articlesTypes";
 import { insertCategory } from "../../utils/insertCategory";
-import { DreamCategory } from "@prisma/client";
 export async function seedCategories(categories: Record<string, number>) {
   try {
     for (const [name, id] of Object.entries(categories)) {
-      const category: DreamCategory = { name, id, description: "" };
+      const category: any = { name, id, description: "" };
       const result = await insertCategory(category); // Insert category into the database
       console.log("Category inserted successfully:", result);
     }

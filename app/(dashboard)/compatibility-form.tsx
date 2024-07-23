@@ -12,7 +12,6 @@ export default async function CompatibilityForm() {
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
-      <h2 className="text-2xl text-center font-bold mb-6">愛情兼容性計算器</h2>
       <form action={handleSubmit}>
         <div className="mb-6">
           <label

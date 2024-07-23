@@ -5,12 +5,14 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+  adjustFontFallback: false,
 });
 
 const lexend = Lexend({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-lexend",
+  adjustFontFallback: false,
 });
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

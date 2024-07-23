@@ -1,10 +1,10 @@
 import React from "react";
 
-interface QuizQuestionProps {
+type QuizQuestionProps = {
   question: string;
-  options: string[];
+  options: string[] | any;
   onAnswer: (answer: string) => void;
-}
+};
 
 export default function QuizQuestion({
   question,

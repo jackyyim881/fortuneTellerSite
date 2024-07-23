@@ -1,7 +1,4 @@
 import { ReactNode } from "react";
-import ZodiacsList from "./_components/zodiacs-list";
-import path from "path";
-import fs from "fs";
 
 export const metadata = {
   title: "星座運勢",

@@ -7,7 +7,7 @@ import QuizResults from "./QuizResults";
 import LoadingSpinner from "../../../loading";
 import ProgressIndicator from "@/components/ProgressIndicator";
 import { useQuizData } from "@/hooks/useQuizData";
-import { QuizData, Answer } from "@/types";
+import { Answer } from "@/types";
 
 export default function QuizMenuList({ questions }) {
   const { quizData, isLoading } = useQuizData("/quiz.json");
@@ -28,7 +28,6 @@ export default function QuizMenuList({ questions }) {
   if (isCompleted) return <QuizResults answers={answers} />;
 
   const currentQuestion = quizData.questions[currentQuestionIndex];
-
   return (
     <>
       <div className="container mx-auto p-4">
@@ -47,15 +46,6 @@ export default function QuizMenuList({ questions }) {
           current={currentQuestionIndex + 1}
           total={quizData.questions.length}
         />
-
-        {questions.map((question: any) => (
-          <div key={question.id} className="menu__item">
-            <h2 className="menu__item-title">{question.id}</h2>
-            <p className="menu__item-description">
-              {question.options.map((option: any) => option.text).join("")}
-            </p>
-          </div>
-        ))}
       </div>
     </>
   );
